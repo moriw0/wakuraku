@@ -1,166 +1,154 @@
 @startuml yonde
-' hide the spot
 hide circle
 
-' avoid problems with angled crows feet
 skinparam linetype ortho
-
-entity "families" as families {
-  id
-  --
-  name
-  nickname
-  introduction
-  created_at
-  updated_at
-}
 
 entity "users" as users {
   id
   --
-  family_id<<FK>>
-  name
+  first_name
+  last_name
   nickname
+  introduction
+  phone_number
   email
   email_verified_at
   password
   remember_token
-  icon_path
-  relation
+  icon_url
+  is_host
   created_at
   updated_at
   deleted_at
 }
 
-entity "children" as children {
-  id
-  --
-  family_id<<FK>>
-  name
-  gender_code
-  birthday
-  created_at
-  updated_at
-}
-
-entity "picture_books" as picture_books {
-  id
-  --
-  family_id<<FK>>
-  user_id<<FK>>
-  google_books_id
-  isbn_13
-  title
-  authors
-  published_date
-  thumbnail_url
-  five_ster_rating
-  read_status
-  review
-  created_at
-  updated_at
-}
-
-entity "read_records" as read_records {
-  id
-  --
-  picture_book_id<<FK>>
-  family_id<<FK>>
-  user_id<<FK>>
-  memo
-  read_date
-  created_at
-  updated_at
-}
-
-entity "child_read_record" as child_read_record {
-  id
-  --
-  read_record_id<<FK>>
-  child_id<<FK>>
-  created_at
-  updated_at
-}
-
-entity "tags" as tags {
-  id
-  --
-  name
-  created_at
-  updated_at
-}
-
-entity "read_record_tag" as read_record_tag {
-  id
-  --
-  read_record_id<<FK>>
-  tag_id<<FK>>
-  created_at
-  updated_at
-}
-
-entity "follows" as follows {
-  id
-  --
-  follower_user_id<<FK>>
-  followee_family_id<<FK>>
-  created_at
-  updated_at
-}
-
-entity "likes" as likes {
+entity "notifications" as notifications {
   id
   --
   user_id<<FK>>
-  picture_book_id<<FK>>
-  created_at
-  updated_at
-}
-
-entity "invites" as invites {
-  id
-  --
-  family_id<<FK>>
-  email
-  token
-  created_at
-  updated_at
-}
-
-entity "contacts" as contacts {
-  id
-  --
-  email
-  nickname
-  name
-  title
   body
   created_at
   updated_at
 }
 
-entity "password_resets" as password_resets {
+entity "sns_credentials" as sns_credentials {
+  id
   --
-  email
-  token
+  user_id<<FK>>
+  provider
+  uid
   created_at
+  updated_at
 }
 
-families ||--|{ users
-families ||--|{ children
-families ||--o{ follows
-families ||--o{ picture_books
-families ||--o{ read_records
-families ||--o{ invites
-users ||--o{ follows
-users ||--o{ likes
-users ||--o{ picture_books
-users ||--o{ read_records
-children ||--o{ child_read_record
-picture_books ||--o{ read_records
-picture_books ||--o{ likes
-read_records ||--o{ child_read_record
-read_records ||--o{ read_record_tag
-tags ||--o{ read_record_tag
+entity "sns_urls" as sns_urls {
+  id
+  --
+  user_id<<FK>>
+  url
+  created_at
+  updated_at
+}
+
+entity "events" as events {
+  id
+  --
+  user_id<<FK>>
+  title
+  subtitle
+  discription
+  thumbnail_url
+  price
+  required_time
+  place
+  is_published
+  capacitiy
+  created_at
+  updated_at
+  deleted_at
+}
+
+entity "event_images" as event_images {
+  id
+  --
+  event_id<<FK>>
+  image_url
+  created_at
+  updated_at
+}
+
+entity "event_reviews" as event_reviews {
+  id
+  --
+  user_id<<FK>>
+  event_id<<FK>>
+  five_ster_rating
+  review
+  created_at
+  updated_at
+}
+
+
+entity "hosted_dates" as hosted_dates {
+  id
+  --
+  event_id<<FK>>
+  date
+  created_at
+  updated_at
+}
+
+entity "reservations" as reservations {
+  reservation_number
+  --
+  user_id<<FK>>
+  event_id<<FK>>
+  memo
+  guest_number
+  is_canceled
+  created_at
+  updated_at
+}
+
+entity "event_favorites" as event_favorites {
+  id
+  --
+  user_id<<FK>>
+  event_id<<FK>>
+  created_at
+  updated_at
+}
+
+entity "event_contacts" as event_contacts {
+  id
+  --
+  user_id<<FK>>
+  event_id<<FK>>
+  body
+  created_at
+  updated_at
+}
+
+' entity "password_resets" as password_resets {
+'   --
+'   email
+'   token
+'   created_at
+' }
+
+users ||--o{ events
+users ||--o{ event_favorites
+users ||--o{ reservations
+users ||--o{ sns_urls
+users ||--o{ event_reviews
+users ||--o{ sns_credentials
+users ||--o{ notifications
+users ||--o{ event_contacts
+events ||--o{ event_favorites
+events ||--|{ event_images
+events ||--|{ hosted_dates
+events ||--o{ event_contacts
+events ||--o{ reservations
+events ||--o{ event_reviews
 
 @enduml
