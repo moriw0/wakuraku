@@ -11,8 +11,23 @@
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <%= yield %>
+    <header class="navbar navbar-default">
+      <div class="container">
+        <%= link_to "wakuraku", root_path, class: "navbar-brand" %>
+        <ul class="nav navbar-nav navbar-right">
+          <% if user_signed_in? %> 
+            <li><%= link_to 'ログアウト', users_sign_out_path %></li>
+          <% else %> 
+            <li><%= link_to "ログイン", new_user_session_path %></li>
+          <% end %> 
+        </ul>
+      </div>
+    </header>
+    <div class="container">
+      <% if flash[:notice] %> 
+        <%= render 'layouts/flashes' %>
+      <% end %>
+      <%= yield %>
+    </div>
   </body>
 </html>
