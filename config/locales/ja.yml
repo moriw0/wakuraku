@@ -1,0 +1,22 @@
+ja:
+  activerecord:
+    models:
+      event: イベント
+    attributes:
+      event:
+        name: 名前
+        place: 場所
+        title: タイトル
+        discription: 詳細
+        price: 価格
+        required_time: 所要時間
+        is_published: 公開設定
+        capacitiy: 人数制限
+  devise:
+    sessions:
+      user:
+        signed_out: ログアウトしました
+    omniauth_callbacks:
+      user:
+        success: ログインしました
+
