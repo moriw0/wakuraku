@@ -11,7 +11,7 @@ ja:
         price: 価格
         required_time: 所要時間
         is_published: 公開設定
-        capacitiy: 人数制限
+        capacitiy: 定員
   devise:
     sessions:
       user:

@@ -1,0 +1,46 @@
+<h1 class="mt-3 mb-3"><%= @event.name %> </h1>
+<div class="card mb-2">
+  <h5 class="card-header">タイトル</h5>
+  <div class="card-body">
+    <p class="card-text"><%= @event.title %> </p>
+  </div>
+</div>
+<div class="card mb-2">
+  <h5 class="card-header">イベント内容</h5>
+  <div class="card-body">
+    <p class="card-text"><%= @event.discription %> </p>
+  </div>
+</div>
+<div class="card mb-2">
+  <h5 class="card-header">場所</h5>
+  <div class="card-body">
+    <p class="card-text"><%= @event.place %> </p>
+  </div>
+</div>
+<div class="card mb-2">
+  <h5 class="card-header">価格</h5>
+  <div class="card-body">
+    <p class="card-text"><%= @event.price %> </p>
+  </div>
+</div>
+<div class="card mb-2">
+  <h5 class="card-header">所要時間</h5>
+  <div class="card-body">
+    <p class="card-text"><%= @event.required_time %> </p>
+  </div>
+</div>
+<div class="card mb-2">
+  <h5 class="card-header">定員</h5>
+  <div class="card-body">
+    <p class="card-text"><%= @event.required_time %> </p>
+  </div>
+</div>
+<div class="card mb-2">
+  <h5 class="card-header">作家さん</h5>
+  <div class="card-body">
+    <%= link_to(@event.owner.name, class: "card-link") do %> 
+      <%= image_tag @event.owner.image, width: 50, height: 50 %> 
+      <%= "@#{@event.owner.name}" %>
+    <% end %> 
+  </div>
+</div>
