@@ -1,2 +1,10 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<h1>ココロミ一覧</h1>
+
+<ul class="list-group">
+  <% @events.each do |event| %> 
+    <%= link_to(event, class: 'list-group-item list-group-item-action') do %> 
+      <h5 class="list-group-item-heading"><%= event.name %> </h5>
+      <p class="mb-1"><%= event.title %> </p>
+    <% end %> 
+  <% end %> 
+</ul>
