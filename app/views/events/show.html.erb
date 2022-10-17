@@ -38,7 +38,7 @@
 <div class="card mb-2">
   <h5 class="card-header">作家さん</h5>
   <div class="card-body">
-    <%= link_to(@event.owner.name, class: "card-link") do %> 
+    <%= link_to(@event.owner.name, class: 'card-link') do %> 
       <%= image_tag @event.owner.image, width: 50, height: 50 %> 
       <%= "@#{@event.owner.name}" %>
     <% end %> 
