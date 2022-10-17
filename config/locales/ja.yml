@@ -15,6 +15,7 @@ ja:
   devise:
     sessions:
       user:
+        signed_in: ログインしました
         signed_out: ログアウトしました
     omniauth_callbacks:
       user:
