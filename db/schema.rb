@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_17_232859) do
+ActiveRecord::Schema.define(version: 2022_10_19_144523) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,8 +33,8 @@ ActiveRecord::Schema.define(version: 2022_10_17_232859) do
 
   create_table "hosted_dates", force: :cascade do |t|
     t.bigint "event_id", null: false
-    t.date "start_at", null: false
-    t.date "end_at", null: false
+    t.datetime "start_at", null: false
+    t.datetime "end_at", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["event_id"], name: "index_hosted_dates_on_event_id"
