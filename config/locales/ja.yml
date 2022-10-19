@@ -12,7 +12,6 @@ ja:
         required_time: 所要時間
         is_published: 公開設定
         capacitiy: 定員
-      hosted_date:
         start_at: 開始日時
         end_at: 終了日時
   devise:

@@ -31,33 +31,18 @@
     <%= f.label :capacitiy %>
     <%= f.text_field :capacitiy, class: "form-control" %>
   </div>
-  <%= f.fields_for :hosted_dates do |date| %>
-    <table id="hosted_date-table">
+  <table id="hosted_date-table" class="form-group">
+    <tr>
+      <th><%= f.label :start_at %></th>
+      <th><%= f.label :end_at %></th>
+    </tr>
+    <%= f.fields_for :hosted_dates do |date| %>
       <tr>
-        <th>
-          <div class="form-group">
-            <%= date.label :start_at %>
-          </div>
-        </th>
-        <th>
-          <div class="form-group">
-            <%= date.label :end_at %>
-          </div>
-        </th>
+        <td><%= date.datetime_field :start_at, value: today.strftime('%Y-%m-%dT%T'), min: today.strftime('%Y-%m-%dT%T'), max: today.next_year.strftime('%Y-%m-%dT%T'), step:600 %></td>
+        <td><%= date.datetime_field :end_at, value: today.strftime('%Y-%m-%dT%T'), min: today.strftime('%Y-%m-%dT%T'), max: today.next_year.strftime('%Y-%m-%dT%T'), step:600  %></td>
       </tr>
-      <tr>
-        <td>
-          <%= date.datetime_field :start_at, value: today.strftime('%Y-%m-%dT%T'), min: today.strftime('%Y-%m-%dT%T'), max: today.next_year.strftime('%Y-%m-%dT%T'), step:600 %>
-          <%# date.datetime_select :start_at, start_year: now.year, end_year: now.year + 1 %>
-        </td>
-        <td>
-          <%= date.datetime_field :end_at, value: today.strftime('%Y-%m-%dT%T'), min: today.strftime('%Y-%m-%dT%T'), max: today.next_year.strftime('%Y-%m-%dT%T'), step:600  %>
-          <%# date.datetime_select :end_at, start_year: now.year, end_year: now.year + 1 %>
-        </td>
-      </tr>
-
     <% end %>
-    </table>
+  </table>
   <div class="form-group">
     <%= f.label :is_published %>
     <%= f.select :is_published, [['公開', true], ['非公開', false]], {}, { class: "form-control" } %>
