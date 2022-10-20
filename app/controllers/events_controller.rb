@@ -3,7 +3,7 @@ skip_before_action :authenticate_user!, only: :show
 
   def new
     @event = current_user.created_events.build
-    3.times { @event.hosted_dates.build }
+    @event.hosted_dates.build
   end
 
   def create
@@ -32,7 +32,7 @@ skip_before_action :authenticate_user!, only: :show
       :required_time,
       :is_published,
       :capacitiy,
-      hosted_dates_attributes: [:start_at, :end_at, :_destroy]
+      hosted_dates_attributes: [:id, :start_at, :end_at, :_destroy]
     )
   end
 end
