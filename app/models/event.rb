@@ -1,5 +1,5 @@
 class Event < ApplicationRecord
-  belongs_to :owner, class_name: "User"
+  belongs_to :owner, class_name: 'User'
   has_many :hosted_dates
   accepts_nested_attributes_for :hosted_dates, allow_destroy: true
 

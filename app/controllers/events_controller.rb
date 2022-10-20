@@ -10,9 +10,9 @@ skip_before_action :authenticate_user!, only: :show
     @event = current_user.created_events.build(event_params)
 
     if @event.save
-      redirect_to @event, notice: "作成しました"
-    else
-      render :new, alert: "登録できませんでした。入力内容をご確認のうえ再度お試しください"
+      redirect_to @event, notice: '作成しました'
+    else 
+      render 'new'
     end
   end
 
