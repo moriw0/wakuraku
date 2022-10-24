@@ -3,6 +3,7 @@ skip_before_action :authenticate_user!, only: :show
 
   def new
     @event = current_user.created_events.build
+    @event.hosted_dates.build
   end
 
   def create
@@ -23,7 +24,15 @@ skip_before_action :authenticate_user!, only: :show
 
   def event_params
     params.require(:event).permit(
-      :name, :place, :title, :discription, :price, :required_time, :is_published, :capacitiy
+      :name,
+      :place,
+      :title,
+      :discription,
+      :price,
+      :required_time,
+      :is_published,
+      :capacitiy,
+      hosted_dates_attributes: [:id, :start_at, :end_at, :_destroy]
     )
   end
 end

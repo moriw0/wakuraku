@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_16_100238) do
+ActiveRecord::Schema.define(version: 2022_10_19_144523) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,15 @@ ActiveRecord::Schema.define(version: 2022_10_16_100238) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["owner_id"], name: "index_events_on_owner_id"
+  end
+
+  create_table "hosted_dates", force: :cascade do |t|
+    t.bigint "event_id", null: false
+    t.datetime "start_at", null: false
+    t.datetime "end_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["event_id"], name: "index_hosted_dates_on_event_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -63,4 +72,5 @@ ActiveRecord::Schema.define(version: 2022_10_16_100238) do
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
+  add_foreign_key "hosted_dates", "events"
 end
