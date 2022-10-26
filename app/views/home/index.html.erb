@@ -1,10 +1,15 @@
 <h1>ココロミ一覧</h1>
 
 <ul class="list-group">
-  <% @events.each do |event| %> 
-    <%= link_to(event, class: 'list-group-item list-group-item-action') do %> 
-      <h5 class="list-group-item-heading"><%= event.name %> </h5>
+  <% @events.each do |event| %>
+    <%= link_to(event, class: 'list-group-item list-group-item-action') do %>
+      <h2 class="list-group-item-heading"><%= event.name %> </h2>
       <p class="mb-1"><%= event.title %> </p>
-    <% end %> 
-  <% end %> 
+      <ul>
+        <% event.hosted_dates.each do |date| %>
+          <li s class="mb-1"><%= l(date.start_at, format: :long) %> - <%= l(date.end_at, format: :long) %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  <% end %>
 </ul>

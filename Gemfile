@@ -62,3 +62,5 @@ gem 'omniauth-rails_csrf_protection'
 gem 'bootstrap-sass'
 gem 'rails-i18n'
 gem "cocoon"
+gem 'hirb'
+gem 'hirb-unicode'
