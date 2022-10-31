@@ -11,4 +11,10 @@ class Event < ApplicationRecord
   validates :required_time, length: { maximum: 3 }, presence: true
   validates :capacitiy, length: { maximum: 3 }, presence: true
   validates :is_published, inclusion: {in: [true, false]}
+
+  scope :with_dates, -> { eager_load(:hosted_dates) }
+  scope :published, -> { where(is_published: true) }
+  scope :sorted, -> { order(updated_at: :desc) }
+  scope :with_recent_dates, -> { with_dates.published.sorted }
+  scope :recent, -> { published.sorted }
 end

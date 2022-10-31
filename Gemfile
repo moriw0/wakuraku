@@ -62,3 +62,7 @@ gem 'omniauth-rails_csrf_protection'
 gem 'bootstrap-sass'
 gem 'rails-i18n'
 gem "cocoon"
+gem 'hirb'
+gem 'hirb-unicode'
+
+gem "font-awesome-sass", "~> 6.2.0"

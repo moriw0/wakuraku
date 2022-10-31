@@ -99,9 +99,15 @@ GEM
       ruby2_keywords (>= 0.0.4)
     faraday-net_http (3.0.1)
     ffi (1.15.5)
+    font-awesome-sass (6.2.0)
+      sassc (~> 2.0)
     globalid (1.0.0)
       activesupport (>= 5.0)
     hashie (5.0.0)
+    hirb (0.7.3)
+    hirb-unicode (0.0.5)
+      hirb (~> 0.5)
+      unicode-display_width (~> 0.1.1)
     i18n (1.12.0)
       concurrent-ruby (~> 1.0)
     jbuilder (2.11.5)
@@ -234,6 +240,7 @@ GEM
     turbolinks-source (5.2.0)
     tzinfo (2.0.5)
       concurrent-ruby (~> 1.0)
+    unicode-display_width (0.1.1)
     version_gem (1.1.1)
     warden (1.2.9)
       rack (>= 2.0.9)
@@ -269,6 +276,9 @@ DEPENDENCIES
   capybara (>= 3.26)
   cocoon
   devise
+  font-awesome-sass (~> 6.2.0)
+  hirb
+  hirb-unicode
   jbuilder (~> 2.7)
   listen (~> 3.3)
   omniauth-facebook

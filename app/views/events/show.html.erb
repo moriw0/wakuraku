@@ -1,46 +1,64 @@
-<h1 class="mt-3 mb-3"><%= @event.name %> </h1>
-<div class="card mb-2">
-  <h5 class="card-header">タイトル</h5>
-  <div class="card-body">
-    <p class="card-text"><%= @event.title %> </p>
+<div class="eye-catching">
+  <div class="wrapper">
+    <h1><%= @event.name %> </h1>
+    <div class="images-box">
+      <div class="image-box"></div>
+    </div>
+    <div class="event-title">
+      <h2><%= @event.title %> </h2>
+    </div>
   </div>
 </div>
-<div class="card mb-2">
-  <h5 class="card-header">イベント内容</h5>
-  <div class="card-body">
-    <p class="card-text"><%= @event.discription %> </p>
+<div class="detail-section">
+  <div class="wrapper">
+    <h2 class="section-header">このココロミについて</h2>
+    <div class="discription">
+      <p class="detail-text"><%=safe_join(@event.discription.split("\n"),tag(:br))%></p>
+    </div>
+    <table>
+      <tr>
+        <th>
+          <%= icon('fas', 'yen-sign', class: 'detail-icon')%>価格
+        </th>
+        <td>
+          <%= @event.price %><span class="unit">円</span>
+        </td>
+      </tr>
+      <tr>
+        <th>
+          <%= icon('fas', 'stopwatch', class: 'detail-icon')%>所要時間
+        </th>
+        <td>
+          <%= @event.required_time %><span class="unit">分</span>
+        </td>
+      </tr>
+      <tr>
+        <th>
+          <%= icon('fas', 'users', class: 'detail-icon')%>定員</h3>
+        </th>
+        <td>
+          <%= @event.required_time %><span class="unit">人</span>
+        </td>
+      </tr>
+      <tr>
+        <th>
+          <%= icon('fas', 'location-dot', class: 'detail-icon')%>場所
+        </th>
+        <td>
+            <%= @event.place %>
+        </td>
+      </tr>
+    </table>
   </div>
 </div>
-<div class="card mb-2">
-  <h5 class="card-header">場所</h5>
-  <div class="card-body">
-    <p class="card-text"><%= @event.place %> </p>
-  </div>
-</div>
-<div class="card mb-2">
-  <h5 class="card-header">価格</h5>
-  <div class="card-body">
-    <p class="card-text"><%= @event.price %> </p>
-  </div>
-</div>
-<div class="card mb-2">
-  <h5 class="card-header">所要時間</h5>
-  <div class="card-body">
-    <p class="card-text"><%= @event.required_time %> </p>
-  </div>
-</div>
-<div class="card mb-2">
-  <h5 class="card-header">定員</h5>
-  <div class="card-body">
-    <p class="card-text"><%= @event.required_time %> </p>
-  </div>
-</div>
-<div class="card mb-2">
-  <h5 class="card-header">作家さん</h5>
-  <div class="card-body">
-    <%= link_to(@event.owner.name, class: 'card-link') do %> 
-      <%= image_tag @event.owner.image, width: 50, height: 50 %> 
-      <%= "@#{@event.owner.name}" %>
-    <% end %> 
+<div class="owner-section">
+  <div class="wrapper">
+    <h2 class="section-header">作家さん</h2>
+    <div class="owner-detail">
+      <%= link_to(@event.owner.name, class: 'detail-link') do %>
+        <%= image_tag @event.owner.image, class: 'owner-image' %>
+        <p class="owner-name"><%= @event.owner.name %></p>
+      <% end %>
+    </div>
   </div>
 </div>
