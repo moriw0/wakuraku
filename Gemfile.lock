@@ -99,6 +99,8 @@ GEM
       ruby2_keywords (>= 0.0.4)
     faraday-net_http (3.0.1)
     ffi (1.15.5)
+    font-awesome-sass (6.2.0)
+      sassc (~> 2.0)
     globalid (1.0.0)
       activesupport (>= 5.0)
     hashie (5.0.0)
@@ -274,6 +276,7 @@ DEPENDENCIES
   capybara (>= 3.26)
   cocoon
   devise
+  font-awesome-sass (~> 6.2.0)
   hirb
   hirb-unicode
   jbuilder (~> 2.7)
