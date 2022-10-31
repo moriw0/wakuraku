@@ -25,6 +25,7 @@
 }
 
 .eye-catching {
+  // Todo: 画像読み機能実装後修正
   .images-box {
     background-image: image-url('workshop.jpeg');
     width: auto;
@@ -33,6 +34,7 @@
     background-position: center;
     margin-bottom: 30px;
   }
+  // ここまで
   .event-title {
     margin-bottom: 50px;
   }
