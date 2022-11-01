@@ -1,6 +1,6 @@
 <h1>ココロミ一覧</h1>
 
-<ul class="list-group">
+<div class="list-group">
   <% @events.each do |event| %>
     <%= link_to(event, class: 'list-group-item list-group-item-action') do %>
       <h2 class="list-group-item-heading"><%= event.name %> </h2>
@@ -12,4 +12,4 @@
       </ul>
     <% end %>
   <% end %>
-</ul>
+</div>

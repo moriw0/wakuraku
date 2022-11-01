@@ -1,12 +1,10 @@
-<% today = Date.today %>
-
 <tr class="nested-fields">
   <%= f.hidden_field :id %>
   <td>
-  <%= f.datetime_field :start_at, value: today.strftime('%Y-%m-%dT%T'), min: today.strftime('%Y-%m-%dT%T'), max: today.next_year.strftime('%Y-%m-%dT%T'), step:600 %>
+  <%= f.datetime_field :start_at, value: @today.strftime('%Y-%m-%dT%T'), min: @today.strftime('%Y-%m-%dT%T'), max: @today.next_year.strftime('%Y-%m-%dT%T'), step:600 %>
   </td>
   <td>
-  <%= f.datetime_field :end_at, value: today.strftime('%Y-%m-%dT%T'), min: today.strftime('%Y-%m-%dT%T'), max: today.next_year.strftime('%Y-%m-%dT%T'), step:600  %>
+  <%= f.datetime_field :end_at, value: @today.strftime('%Y-%m-%dT%T'), min: @today.strftime('%Y-%m-%dT%T'), max: @today.next_year.strftime('%Y-%m-%dT%T'), step:600  %>
   </td>
   <td>
   <%= link_to_remove_association '削除', f, class: 'btn btn-default' %>
