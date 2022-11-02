@@ -33,7 +33,7 @@ skip_before_action :authenticate_user!, only: :show
       :required_time,
       :is_published,
       :capacity,
-      hosted_dates_attributes: [:id, :start_at, :end_at, :_destroy]
+      hosted_dates_attributes: [:id, :started_at, :ended_at, :_destroy]
     )
   end
 end

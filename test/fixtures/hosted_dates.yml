@@ -2,10 +2,10 @@
 
 one:
   event: one
-  start_at: 2022-10-18
-  end_at: 2022-10-18
+  started_at: 2022-10-18
+  ended_at: 2022-10-18
 
 two:
   event: two
-  start_at: 2022-10-18
-  end_at: 2022-10-18
+  started_at: 2022-10-18
+  ended_at: 2022-10-18
