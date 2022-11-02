@@ -11,7 +11,7 @@ ja:
         price: 価格
         required_time: 所要時間
         is_published: 公開設定
-        capacitiy: 定員
+        capacity: 定員
         start_at: 開始日時
         end_at: 終了日時
   devise:

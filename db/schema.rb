@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_19_144523) do
+ActiveRecord::Schema.define(version: 2022_11_02_142554) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 2022_10_19_144523) do
     t.integer "price", null: false
     t.integer "required_time", null: false
     t.boolean "is_published", null: false
-    t.integer "capacitiy", null: false
+    t.integer "capacity", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["owner_id"], name: "index_events_on_owner_id"

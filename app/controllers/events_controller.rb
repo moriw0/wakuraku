@@ -32,7 +32,7 @@ skip_before_action :authenticate_user!, only: :show
       :price,
       :required_time,
       :is_published,
-      :capacitiy,
+      :capacity,
       hosted_dates_attributes: [:id, :start_at, :end_at, :_destroy]
     )
   end
