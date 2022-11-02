@@ -4,6 +4,7 @@ skip_before_action :authenticate_user!, only: :show
   def new
     @event = current_user.created_events.build
     @event.hosted_dates.build
+    @today = Date.today
   end
 
   def create
