@@ -9,7 +9,7 @@ class Event < ApplicationRecord
   validates :discription, length: { maximum: 2000 }, presence: true
   validates :price, length: { maximum: 7 }, presence: true
   validates :required_time, length: { maximum: 3 }, presence: true
-  validates :capacitiy, length: { maximum: 3 }, presence: true
+  validates :capacity, length: { maximum: 3 }, presence: true
   validates :is_published, inclusion: {in: [true, false]}
 
   scope :with_dates, -> { eager_load(:hosted_dates) }

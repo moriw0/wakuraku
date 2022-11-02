@@ -62,7 +62,7 @@ entity "events" as events {
   required_time
   place
   is_published
-  capacitiy
+  capacity
   created_at
   updated_at
   deleted_at

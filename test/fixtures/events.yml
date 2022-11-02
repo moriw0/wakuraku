@@ -11,7 +11,7 @@ one:
   price: 1
   required_time: 1
   is_published: false
-  capacitiy: 1
+  capacity: 1
 
 two:
   owner_id: 
@@ -24,4 +24,4 @@ two:
   price: 1
   required_time: 1
   is_published: false
-  capacitiy: 1
+  capacity: 1
