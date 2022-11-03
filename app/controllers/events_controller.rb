@@ -1,5 +1,8 @@
 class EventsController < ApplicationController
-skip_before_action :authenticate_user!, only: :show
+  skip_before_action :authenticate_user!, only: :show
+  permits :name, :place, :title, :discription, :price, :required_time, :is_published, :capacity, 
+          hosted_dates_attributes: 
+            [:id, :started_at, :ended_at, :_destroy]
 
   def new
     @event = current_user.created_events.build
@@ -7,8 +10,8 @@ skip_before_action :authenticate_user!, only: :show
     @today = Date.today
   end
 
-  def create
-    @event = current_user.created_events.build(event_params)
+  def create(event)
+    @event = current_user.created_events.build(event)
 
     if @event.save
       redirect_to @event, notice: '作成しました'
@@ -17,23 +20,7 @@ skip_before_action :authenticate_user!, only: :show
     end
   end
 
-  def show
-    @event = Event.find(params[:id])
-  end
-
-  private
-
-  def event_params
-    params.require(:event).permit(
-      :name,
-      :place,
-      :title,
-      :discription,
-      :price,
-      :required_time,
-      :is_published,
-      :capacity,
-      hosted_dates_attributes: [:id, :started_at, :ended_at, :_destroy]
-    )
+  def show(id)
+    @event = Event.find(id)
   end
 end
