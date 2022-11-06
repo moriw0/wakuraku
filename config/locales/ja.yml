@@ -22,4 +22,7 @@ ja:
     omniauth_callbacks:
       user:
         success: ログインしました
+  time:
+    formats:
+      short: "%H:%M"
 

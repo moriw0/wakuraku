@@ -51,6 +51,29 @@
     </table>
   </div>
 </div>
+<div class="dates-section">
+  <div class="wrapper">
+    <h2 class="section-header">開催日から予約</h2>
+    <table>
+      <% @event.hosted_dates.each do |date| %>
+        <tr>
+          <th>
+            <%= icon('far', 'calendar-days', class: 'detail-icon')%>
+            <%= l(date.started_at, format: :long) %> - <%= l(date.ended_at, format: :short) %>
+          </th>
+          <!-- TODO: 後で実装--------- -->
+          <td>
+            ◯<span class="rest-capacity">残り1人</span>
+          </td>
+          <td>
+            <%= link_to '予約する', '#', class: "btn btn-default" %>
+          </td>
+          <!-- ---------------ここまで -->
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
 <div class="owner-section">
   <div class="wrapper">
     <h2 class="section-header">作家さん</h2>
