@@ -51,6 +51,14 @@
     </table>
   </div>
 </div>
+<div class="dates-section">
+  <div class="wrapper">
+    <h2 class="section-header">開催日から予約</h2>
+    <table>
+      <%= render partial: 'hosted_date_show', collection: @event.hosted_dates, as: 'date' %>
+    </table>
+  </div>
+</div>
 <div class="owner-section">
   <div class="wrapper">
     <h2 class="section-header">作家さん</h2>

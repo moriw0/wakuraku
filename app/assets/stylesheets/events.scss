@@ -38,16 +38,8 @@ body .container {
   // ここまで
 }
 
-.detail-section {
+.detail-section, .dates-section {
   background-color: #f5f5f5;
-  .discription {
-    margin: 0 auto;
-    margin-bottom: 40px;
-    width: fit-content;
-    .detail-text {
-      line-height: 1.8;
-    }
-  }
   table  {
     margin: 0 auto;
     th, td{
@@ -64,11 +56,36 @@ body .container {
         margin-right: 10px;
       }
     }
+  }
+}
+
+.detail-section {
+  .discription {
+    margin: 0 auto;
+    margin-bottom: 40px;
+    width: fit-content;
+    .detail-text {
+      line-height: 1.8;
+      table  {
+        td {
+          span.unit {
+            margin-left: 5px;
+            font-size: 1.3rem;
+            color: rgb(93, 91, 91);
+          }
+        }
+      }
+    }
+  }
+}
+
+.dates-section {
+  table  {
     td {
-      span.unit {
+      span.rest-capacity {
         margin-left: 5px;
-        font-size: 1.3rem;
-        color: rgb(93, 91, 91);
+        font-size: 0.9rem;
+        color: rgb(109, 105, 105);
       }
     }
   }
