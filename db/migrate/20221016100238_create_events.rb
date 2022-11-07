@@ -10,7 +10,7 @@ class CreateEvents < ActiveRecord::Migration[6.1]
       t.integer :price, null: false
       t.integer :required_time, null: false
       t.boolean :is_published, null: false
-      t.integer :capacity, null: false
+      t.integer :capacitiy, null: false
 
       t.timestamps
     end
