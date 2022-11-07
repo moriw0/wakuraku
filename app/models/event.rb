@@ -1,6 +1,6 @@
 class Event < ApplicationRecord
   belongs_to :owner, class_name: 'User'
-  has_many :hosted_dates
+  has_many :hosted_dates, dependent: :destroy
   accepts_nested_attributes_for :hosted_dates, allow_destroy: true
 
   validates :name, length: { maximum: 50 }, presence: true
@@ -17,4 +17,9 @@ class Event < ApplicationRecord
   scope :sorted, -> { order(updated_at: :desc) }
   scope :with_recent_dates, -> { with_dates.published.sorted }
   scope :recent, -> { published.sorted }
+
+  def created_by?(user)
+    return false unless user
+    owner.id == user.id
+  end
 end

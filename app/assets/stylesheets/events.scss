@@ -26,6 +26,10 @@ body .container {
 }
 
 .eye-catching {
+  .event-header {
+    display: flex;
+    justify-content: space-between;
+  }
   // Todo: 画像読み機能実装後修正
   .images-box {
     background-image: image-url('workshop.jpeg');
