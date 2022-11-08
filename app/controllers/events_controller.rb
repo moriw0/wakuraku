@@ -4,13 +4,17 @@ class EventsController < ApplicationController
           hosted_dates_attributes: 
             [:id, :started_at, :ended_at, :_destroy]
 
+  def index
+    @events = Event.with_recent_dates
+  end
+
   def new
     @event = current_user.created_events.build
     @event.hosted_dates.build
     @today = Date.today
   end
 
-  def create(event)
+  def create(event:)
     @event = current_user.created_events.build(event)
 
     if @event.save
@@ -20,7 +24,25 @@ class EventsController < ApplicationController
     end
   end
 
-  def show(id)
+  def show(id:)
     @event = Event.find(id)
+  end
+
+  def edit(id:)
+    @event = current_user.created_events.find(id)
+    @today = Date.today
+  end
+
+  def update(id:, event:)
+    @event = current_user.created_events.find(id)
+    if @event.update(event)
+      redirect_to @event, notice: '更新しました'
+    end
+  end
+
+  def destroy(id:)
+    @event = current_user.created_events.find(id)
+    @event.destroy!
+    redirect_to events_path, notice: '削除しました'
   end
 end
