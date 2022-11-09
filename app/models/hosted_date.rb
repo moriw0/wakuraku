@@ -1,5 +1,6 @@
 class HostedDate < ApplicationRecord
   belongs_to :event
+  has_many :reservations
 
   validates :started_at, presence: true
   validates :ended_at, presence: true

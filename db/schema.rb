@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_11_08_034858) do
+ActiveRecord::Schema.define(version: 2022_11_09_150407) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,7 +48,9 @@ ActiveRecord::Schema.define(version: 2022_11_08_034858) do
     t.boolean "is_canceled", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "hosted_date_id", null: false
     t.index ["event_id", "user_id"], name: "index_reservations_on_event_id_and_user_id", unique: true
+    t.index ["hosted_date_id"], name: "index_reservations_on_hosted_date_id"
     t.index ["user_id"], name: "index_reservations_on_user_id"
   end
 
@@ -86,4 +88,5 @@ ActiveRecord::Schema.define(version: 2022_11_08_034858) do
 
   add_foreign_key "hosted_dates", "events"
   add_foreign_key "reservations", "events"
+  add_foreign_key "reservations", "hosted_dates"
 end

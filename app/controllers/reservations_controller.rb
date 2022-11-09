@@ -1,16 +1,18 @@
 class ReservationsController < ApplicationController
+  permits :comment
+
   def new(event_id:, date_id:)
     @event = Event.find(event_id)
     @date = HostedDate.find(date_id)
     @reservation = current_user.reservations.build
   end
 
-  def create(event_id:, date_id:)
+  def create(event_id:, date_id:, reservation:)
     event = Event.find(event_id)
     date = HostedDate.find(date_id)
-    @reservation = current_user.reservations.build do |t|
+    @reservation = current_user.reservations.build(reservation) do |t|
       t.event = event
-      t.comment = params[:reservation][:comment]
+      t.hosted_date = date
     end
 
     if @reservation.save
