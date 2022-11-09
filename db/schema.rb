@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 2022_11_08_034858) do
     t.bigint "event_id", null: false
     t.string "comment"
     t.integer "guest_number"
-    t.boolean "is_canceled"
+    t.boolean "is_canceled", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["event_id", "user_id"], name: "index_reservations_on_event_id_and_user_id", unique: true
