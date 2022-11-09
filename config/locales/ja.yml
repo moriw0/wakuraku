@@ -14,6 +14,8 @@ ja:
         capacity: 定員
         started_at: 開始日時
         ended_at: 終了日時
+      reservation:
+        comment: 連絡事項
   devise:
     sessions:
       user:

@@ -8,7 +8,7 @@
     ◯<span class="rest-capacity">残り1人</span>
   </td>
   <td>
-    <%= link_to '予約する', '#', class: "btn btn-default" %>
+    <%= link_to '予約する', new_event_reservation_path(event_id: date.event, date_id: date), class: "btn btn-default" %>
   </td>
   <!-- ---------------ここまで -->
 </tr>
