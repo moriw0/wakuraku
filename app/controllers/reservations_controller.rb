@@ -16,11 +16,11 @@ class ReservationsController < ApplicationController
     end
 
     if @reservation.save
+      # TODO: 参加したイベント一覧実装後は遷移先を変更する
       redirect_to root_path, notice: 'イベントに参加しました'
     else
       flash.now[:error] = 'イベントに参加できませんでした'
       render 'events/show'
-      # render 'events/show', notice: "この日時(#{l(date.started_at, format: :long)}-#{l(date.ended_at, format: :short)})には参加できません"
     end
   end
 end
