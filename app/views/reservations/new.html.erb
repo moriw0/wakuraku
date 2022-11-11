@@ -1,0 +1,48 @@
+<%= render 'shared/error_messages' %>
+<h1>ご予約内容確認</h1>
+<div class="detail-section">
+  <div class="wrapper">
+    <h2 class="section-header">ご予約内容</h2>
+    <table>
+      <tr>
+        <th><%= icon('fas', 'location-dot', class: 'detail-icon')%>プラン名</th>
+        <td><%= @event.name %></td>
+      </tr>
+      <tr>
+        <th><%= icon('fas', 'stopwatch', class: 'detail-icon')%>日時</th>
+        <th><%= l(@date.started_at, format: :long) %> - <%= l(@date.ended_at, format: :short) %></th>
+      </tr>
+      <tr>
+        <th><%= icon('fas', 'users', class: 'detail-icon')%>参加者数</h3></th>
+        <td><%= @event.required_time %><span class="unit">人</span></td>
+      </tr>
+      <tr>
+        <th><%= icon('fas', 'yen-sign', class: 'detail-icon')%>参加費計</th>
+        <td><%= @event.price %><span class="unit">円</span></td>
+      </tr>
+    </table>
+  </div>
+</div>
+<div class="detail-section">
+  <div class="wrapper">
+    <h2 class="section-header">お客様情報</h2>
+    <table>
+      <tr>
+        <th><%= icon('fas', 'stopwatch', class: 'detail-icon')%>お名前</th>
+        <td><%= @reservation.user.name %></td>
+      </tr>
+      <tr>
+        <th><%= icon('fas', 'location-dot', class: 'detail-icon')%>e-mail</th>
+        <td><%= @reservation.user.email %></td>
+      </tr>
+    </tr>
+  </table>
+  <%= form_with model: @reservation, url: event_reservations_path(event_id: @event, date_id: @date), local: true do |f| %>
+    <div class="form-group">
+      <%= f.label :comment %>
+      <%= f.text_area :comment, class: 'form-control', row: 10 %>
+    </div>
+    <%= f.submit '予約を確定する', class: 'btn btn-primary' %> 
+  <% end %> 
+  </div>
+</div>
