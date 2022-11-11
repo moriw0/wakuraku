@@ -12,7 +12,6 @@ class ReservationsController < ApplicationController
       t.hosted_date = @date
     end
     
-    debugger
     if @reservation.save
       # TODO: 参加したイベント一覧実装後は遷移先を変更する
       redirect_to root_path, notice: 'イベントに参加しました'
