@@ -13,10 +13,10 @@ class ReservationsController < ApplicationController
     end
     
     if @reservation.save
-      # TODO: 参加したイベント一覧実装後は遷移先を変更する
-      redirect_to root_path, notice: 'イベントに参加しました'
+      # TODO: 参加したココロミ一覧実装後は遷移先を変更する
+      redirect_to root_path, notice: 'ココロミを予約しました'
     else
-      flash.now[:error] = 'イベントに参加できませんでした'
+      flash.now[:error] = 'ココロミを予約できませんでした'
       render 'events/show'
     end
   end

@@ -9,6 +9,7 @@
         <% end %> 
       </div>
     </div>
+    <%= render 'shared/error_messages', model: @reservation unless @reservation.nil? %>
     <div class="images-box">
       <div class="image-box"></div>
     </div>
