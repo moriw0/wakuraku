@@ -1,12 +1,9 @@
-<% if @event.errors.any? %>
-  <div id="error_explanation">
-    <div class="alert alert-danger">
-      The form contains <%= pluralize(@event.errors.count, 'error') %>.
-    </div>
+<% if model.errors.any? %>
+  <div class="alert alert-warning">
     <ul>
-    <% @event.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
+      <% model.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
     </ul>
   </div>
 <% end %>
