@@ -21,7 +21,20 @@ ja:
       hosted_dates:
         started_at: 開始日時
         ended_at: 終了日時
+      user:
+        email: メールアドレス
+        password: パスワード
+        password_confirmation: パスワード（確認）
+        current_password: 現在のパスワード
+        nick_name: ニックネーム
+        profile: 自己紹介
+        phone_number: 電話番号
+        remember_me: ログインしたままにする
   devise:
+    registrations:
+      user:
+        signed_up: ユーザー登録しました
+        updated: ユーザー情報を更新しました
     sessions:
       user:
         signed_in: ログインしました
@@ -29,6 +42,9 @@ ja:
     omniauth_callbacks:
       user:
         success: ログインしました
+    failure:
+      user:
+        unauthenticated: ログインしてください
   time:
     formats:
       short: "%H:%M"

@@ -16,6 +16,7 @@
       <% end %>
       <p class="user-name"><%= @user.nick_name %></p>
       <p class="user-profile"><%= @user.profile %> </p>
+      <%= link_to 'プロフィールを編集する', edit_user_registration_path, class: 'user-edit-link' if current_user? %>
     </div>
   </div>
 </div>
