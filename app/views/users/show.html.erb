@@ -1,7 +1,7 @@
 <div class="events-section">
   <div class="wrapper">
     <% if @events.any? %>
-      <h1><%= @user.nick_name %>のココロミ</h1>
+      <h1><%= @user.nickname %>のココロミ</h1>
       <%= render partial: 'events/event_item', collection: @events, as: 'event' %>
     <% end %>
   </div>
@@ -14,7 +14,7 @@
       <% else %>
         <%= image_tag 'blank_user_image.png', class: 'user-image' %>
       <% end %>
-      <p class="user-name"><%= @user.nick_name %></p>
+      <p class="user-name"><%= @user.nickname %></p>
       <p class="user-profile"><%= @user.profile %> </p>
       <%= link_to 'プロフィールを編集する', edit_user_registration_path, class: 'user-edit-link' if current_user? %>
     </div>
