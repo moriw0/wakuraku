@@ -26,7 +26,7 @@ ja:
         password: パスワード
         password_confirmation: パスワード（確認）
         current_password: 現在のパスワード
-        nick_name: ニックネーム
+        nickname: ニックネーム
         profile: 自己紹介
         phone_number: 電話番号
         remember_me: ログインしたままにする
