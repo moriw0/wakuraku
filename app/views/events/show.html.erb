@@ -72,9 +72,9 @@
   <div class="wrapper">
     <h2 class="section-header">作家さん</h2>
     <div class="owner-detail">
-      <%= link_to(@event.owner.name, class: 'detail-link') do %>
+      <%= link_to(user_path @event.owner, class: 'detail-link') do %>
         <%= image_tag @event.owner.image, class: 'owner-image' %>
-        <p class="owner-name"><%= @event.owner.name %></p>
+        <p class="owner-name"><%= @event.owner.nickname %></p>
       <% end %>
     </div>
   </div>
