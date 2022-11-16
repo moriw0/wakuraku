@@ -2,6 +2,10 @@ class ReservationsController < ApplicationController
   before_action :set_event_and_date, only: [:new, :create]
   permits :comment
   
+  def index
+    @reservations = current_user.reservations
+  end
+
   def new
     @reservation = current_user.reservations.build
   end

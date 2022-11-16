@@ -47,6 +47,7 @@ ja:
         unauthenticated: ログインしてください
   time:
     formats:
+      default: "%Y年%m月%d日"
       long: "%Y年%m月%d日(%a) %H:%M"
       short: "%H:%M"
   errors:
