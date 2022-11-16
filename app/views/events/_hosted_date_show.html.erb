@@ -1,7 +1,7 @@
 <tr>
   <th>
     <%= icon('far', 'calendar-days', class: 'detail-icon')%>
-    <%= l(date.started_at, format: :long) %> - <%= l(date.ended_at, format: :short) %>
+    <%= format_date(date) %>
   </th>
   <!-- TODO: 後で実装--------- -->
   <td>

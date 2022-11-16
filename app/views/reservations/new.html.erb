@@ -9,7 +9,7 @@
       </tr>
       <tr>
         <th><%= icon('fas', 'stopwatch', class: 'detail-icon')%>日時</th>
-        <th><%= l(@date.started_at, format: :long) %> - <%= l(@date.ended_at, format: :short) %></th>
+        <th><%= format_date(@date) %></th>
       </tr>
       <tr>
         <th><%= icon('fas', 'users', class: 'detail-icon')%>参加者数</h3></th>
