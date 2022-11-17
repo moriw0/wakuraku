@@ -1,5 +1,5 @@
 <h1>予約したココロミ</h1>
-
+<%= render 'shared/error_messages', model: @reservation unless @reservation.nil? %>
 <div class="list-group">
   <%= render partial: 'joined_event_item', collection: @reservations, as: 'reservation' %>
 </div>

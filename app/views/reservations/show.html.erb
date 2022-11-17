@@ -1,0 +1,47 @@
+<div class="eye-catching">
+  <div class="wrapper">
+    <div class="event-header">
+      <h1><%= @event.name %> </h1>
+    </div>
+    <div class="images-box">
+      <div class="image-box"></div>
+    </div>
+    <div class="event-title">
+      <h2><%= @event.title %> </h2>
+    </div>
+  </div>
+</div>
+<div class="change-section">
+  <div class="wrapper">
+    <%= form_with model: @event, url: user_reservation_path(user_id: current_user, reservaiton_id: @reservation, event_id: @event, date_id: @date), method: :patch do |f| %> 
+      <table>
+        <tr>
+          <th><%= icon('fas', 'calendar-days', class: 'detail-icon')%>開催日時</th>
+          <td><%= f.select :id, options_for_select(@event.hosted_dates.map { |date| [format_date(date), date.id] }) %> </td>
+        </tr>
+        <tr>
+          <th><%= icon('fas', 'location-dot', class: 'detail-icon')%>場所</th>
+          <td><%= @event.place %></td>
+        </tr>
+        <!-- TODO: 参加人数と参加費計を算出できるようにする -->
+        <tr>
+          <th><%= icon('fas', 'users', class: 'detail-icon')%>参加人数</h3></th>
+          <td>1<span class="unit">人</span></td>
+        </tr>
+        <tr>
+          <th><%= icon('fas', 'yen-sign', class: 'detail-icon')%>参加費計</th>
+          <td><%= @event.price %><span class="unit">円</span></td>
+        </tr>
+        <!-- ここまで -->
+        <tr>
+        </tr>
+      </table>
+      <div class="btn-area">
+        <%= f.submit '予約内容を変更する', class: 'btn btn-default btn-block' %> 
+        <div class="btn-modest">
+          <%= link_to 'この予約をキャンセルする', user_reservation_path(user_id: current_user, reservaiton_id: @reservation), method: :delete, data: { confirm: '本当にキャンセルしますか？' } %> 
+        </div>
+      </div>
+    <% end %> 
+  </div>
+</div>
