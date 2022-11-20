@@ -9,4 +9,11 @@ class Reservation < ApplicationRecord
     validates :event_id
     validates :hosted_date_id, uniqueness: true 
   end
+
+  scope :with_associations, -> { preload(:hosted_date, :event) }
+  scope :reserved, -> { where(is_canceled: false) }
+  scope :canceled, -> { where(is_canceled: true) }
+  scope :sorted, -> { order(updated_at: :desc) }
+  scope :with_recent_associations, -> { with_associations.reserved.sorted }
+  scope :recent_canceled, -> { with_associations.canceled.sorted }
 end

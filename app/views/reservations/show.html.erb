@@ -3,6 +3,7 @@
     <div class="event-header">
       <h1><%= @event.name %> </h1>
     </div>
+    <%= render 'shared/error_messages', model: @reservation unless @reservation.nil? %>
     <div class="images-box">
       <div class="image-box"></div>
     </div>
@@ -13,11 +14,11 @@
 </div>
 <div class="change-section">
   <div class="wrapper">
-    <%= form_with model: @event, url: user_reservation_path(user_id: current_user, reservaiton_id: @reservation, event_id: @event, date_id: @date), method: :patch do |f| %> 
+    <%= form_with model: @reservation, url: user_reservation_path(user_id: current_user), method: :patch do |f| %> 
       <table>
         <tr>
           <th><%= icon('fas', 'calendar-days', class: 'detail-icon')%>開催日時</th>
-          <td><%= f.select :id, options_for_select(@event.hosted_dates.map { |date| [format_date(date), date.id] }) %> </td>
+          <td><%= f.select :hosted_date_id, date_options_by(@event) %> </td>
         </tr>
         <tr>
           <th><%= icon('fas', 'location-dot', class: 'detail-icon')%>場所</th>
