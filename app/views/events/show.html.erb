@@ -26,36 +26,20 @@
     </div>
     <table>
       <tr>
-        <th>
-          <%= icon('fas', 'yen-sign', class: 'detail-icon')%>価格
-        </th>
-        <td>
-          <%= @event.price %><span class="unit">円</span>
-        </td>
+        <th><%= icon('fas', 'yen-sign', class: 'detail-icon')%>価格</th>
+        <td><%= @event.price %><span class="unit">円</span></td>
       </tr>
       <tr>
-        <th>
-          <%= icon('fas', 'stopwatch', class: 'detail-icon')%>所要時間
-        </th>
-        <td>
-          <%= @event.required_time %><span class="unit">分</span>
-        </td>
+        <th><%= icon('fas', 'stopwatch', class: 'detail-icon')%>所要時間</th>
+        <td><%= @event.required_time %><span class="unit">分</span></td>
       </tr>
       <tr>
-        <th>
-          <%= icon('fas', 'users', class: 'detail-icon')%>定員</h3>
-        </th>
-        <td>
-          <%= @event.required_time %><span class="unit">人</span>
-        </td>
+        <th><%= icon('fas', 'users', class: 'detail-icon')%>定員</h3></th>
+        <td><%= @event.capacity %><span class="unit">人</span></td>
       </tr>
       <tr>
-        <th>
-          <%= icon('fas', 'location-dot', class: 'detail-icon')%>場所
-        </th>
-        <td>
-            <%= @event.place %>
-        </td>
+        <th><%= icon('fas', 'location-dot', class: 'detail-icon')%>場所</th>
+        <td><%= @event.place %></td>
       </tr>
     </table>
   </div>
