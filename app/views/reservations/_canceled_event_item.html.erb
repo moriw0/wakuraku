@@ -1,0 +1,5 @@
+<%= link_to(event_path(id: reservation.event), class: 'list-group-item list-group-item-action') do %>
+  <h2 class="list-group-item-heading"><%= reservation.event.name %></h2>
+  <p class="mb-1"><%= reservation.event.title %></p>
+  <p>キャンセル日：<%= format_updated_date_by(reservation) %></p>
+<% end %>

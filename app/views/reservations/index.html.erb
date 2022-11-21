@@ -1,0 +1,5 @@
+<h1>予約したココロミ</h1>
+<%= link_to 'キャンセル済み一覧', user_canceled_reservations_path %> 
+<div class="list-group">
+  <%= render partial: 'reserved_event_item', collection: @reservations, as: 'reservation' %>
+</div>

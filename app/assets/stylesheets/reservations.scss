@@ -1,3 +1,52 @@
-// Place all the styles related to the reservations controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: https://sass-lang.com/
+.change-section {
+  background-color: #f5f5f5;
+  table  {
+    margin: 0 auto;
+    th, td{
+      padding-right: 20px;
+      border-bottom: dashed 1px black;
+      padding: 15px 15px 5px;
+    }
+    th {
+      font-weight: 500;
+      .detail-icon {
+        padding-top: 4px;
+        width: 15px;
+        text-align: right;
+        margin-right: 10px;
+      }
+    }
+  }
+}
+
+.detail-section {
+  .discription {
+    margin: 0 auto;
+    margin-bottom: 40px;
+    width: fit-content;
+    .detail-text {
+      line-height: 1.8;
+      table  {
+        td {
+          span.unit {
+            margin-left: 5px;
+            font-size: 1.3rem;
+            color: rgb(93, 91, 91);
+          }
+        }
+      }
+    }
+  }
+}
+
+.change-section {
+  .btn-area {
+    margin: 40px auto;
+    margin-bottom: 0;
+    max-width: 300px;
+    .btn-modest {
+      text-align: center;
+      margin: 20px;
+    }
+  }
+}
