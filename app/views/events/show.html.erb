@@ -57,7 +57,11 @@
     <h2 class="section-header">作家さん</h2>
     <div class="owner-detail">
       <%= link_to(user_path @event.owner, class: 'detail-link') do %>
-        <%= image_tag @event.owner.image, class: 'owner-image' %>
+        <% if @event.owner.image.present? %>
+          <%= image_tag @event.owner.image, class: 'owner-image' %>
+        <% else %>
+          <%= image_tag 'blank_user_image.png', class: 'owner-image' %>
+        <% end %>
         <p class="owner-name"><%= @event.owner.nickname %></p>
       <% end %>
     </div>
