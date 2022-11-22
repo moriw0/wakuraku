@@ -23,4 +23,12 @@ class Event < ApplicationRecord
     return false unless user
     owner.id == user.id
   end
+
+  def available?(date)
+    capacity_left_of(date) >= 1
+  end
+
+  def capacity_left_of(date)
+    self.capacity - self.reservations.where(hosted_date: date.id).reserved.count
+  end
 end

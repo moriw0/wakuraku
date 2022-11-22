@@ -5,9 +5,8 @@ class Reservation < ApplicationRecord
 
   validates :comment, length: { maximum: 200 }, allow_blank: true
   with_options presence: true do
-    validates :user_id
     validates :event_id
-    validates :hosted_date_id, uniqueness: true 
+    validates :hosted_date_id, uniqueness: { scope: [:user_id, :event_id] }
   end
 
   scope :with_associations, -> { preload(:hosted_date, :event) }
