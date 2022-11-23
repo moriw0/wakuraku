@@ -1,0 +1,10 @@
+<tr>
+  <th scope="row">
+    <%= link_to customer_reservations_path(customer) do %>
+      <%= customer.nickname %>
+    <% end %> 
+  </th>
+  <td><%= customer.name %></td>
+  <td><%= customer.phone_number %></td>
+  <td><%= customer.email %></td>
+</tr>

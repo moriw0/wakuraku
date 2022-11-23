@@ -1,0 +1,18 @@
+<div class="customer-section">
+  <div class="wrapper">
+    <h2 class="section-header">顧客一覧</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">ニックネーム</th>
+          <th scope="col">名前</th>
+          <th scope="col">電話番号</th>
+          <th scope="col">email</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render partial: 'customer_item', collection: @customers, as: 'customer' %>
+      </tbody>
+    </table>
+  </div>
+</div>
