@@ -1,0 +1,19 @@
+<div class="reservation-section">
+  <div class="wrapper">
+    <h2 class="section-header">ココロミ一覧</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">ココロミ名</th>
+          <th scope="col">金額</th>
+          <th scope="col">場所</th>
+          <th scope="col">総受付数</th>
+          <th scope="col">ステータス</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render partial: 'event_item', collection: @events, as: 'event' %>
+      </tbody>
+    </table>
+  </div>
+</div>
