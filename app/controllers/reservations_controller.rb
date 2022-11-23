@@ -1,7 +1,4 @@
 class ReservationsController < ApplicationController
-  before_action :set_event, only: [:new, :create]
-  before_action :set_date, only: [:new, :create]
-  before_action :set_reservation, only: [:show, :update, :destroy]
   permits :comment, :hosted_date_id
   
   def index
@@ -12,11 +9,15 @@ class ReservationsController < ApplicationController
     @reservations = current_user.reservations.recent_canceled
   end
 
-  def new
+  def new(event_id:, date_id:)
+    @event = Event.find(event_id)
+    @date = HostedDate.find(date_id)
     @reservation = current_user.reservations.build
   end
   
-  def create(reservation:)
+  def create(event_id:, date_id:, reservation:)
+    @event = Event.find(event_id)
+    @date = HostedDate.find(date_id)
     @reservation = current_user.reservations.build(reservation) do |t|
       t.event = @event
       t.hosted_date = @date
@@ -30,12 +31,15 @@ class ReservationsController < ApplicationController
     end
   end
 
-  def show
+  def show(id:)
+    @reservation = Reservation.find(id)
     @event = Event.find(@reservation.event_id)
     @date = HostedDate.find(@reservation.hosted_date_id)
   end
 
-  def update(reservation:)
+  def update(id:, reservation:)
+    @reservation = Reservation.find(id)
+
     if @reservation.update(reservation)
       redirect_to user_reservations_path, notice: '予約を変更しました'
     else
@@ -46,22 +50,9 @@ class ReservationsController < ApplicationController
     end
   end
 
-  def destroy
+  def destroy(id:)
+    @reservation = Reservation.find(id)
     @reservation.update(is_canceled: true)
     redirect_to user_reservations_path, notice: '予約をキャンセルしました'
-  end
-
-  private 
-
-  def set_event(event_id:)
-    @event = Event.find(event_id)
-  end
-
-  def set_date(date_id:)
-    @date = HostedDate.find(date_id)
-  end
-
-  def set_reservation(id:)
-    @reservation = Reservation.find(id)
   end
 end

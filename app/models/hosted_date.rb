@@ -5,7 +5,15 @@ class HostedDate < ApplicationRecord
   validates :started_at, presence: true
   validates :ended_at, presence: true
   validate :srart_at_should_be_before_ended_at
+  
+  def available?
+    true unless capacity_left.zero?
+  end
 
+  def capacity_left
+    self.event.capacity - self.reservations.reserved.count
+  end
+  
   private
 
   def srart_at_should_be_before_ended_at
