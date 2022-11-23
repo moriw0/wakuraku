@@ -6,15 +6,15 @@
   <% if @event.created_by?(current_user) %>
     <td>
       <%= icon('far', 'circle', class: 'detail-icon') %>
-      <span class="rest-capacity">残り<%= @event.capacity_left_of(date) %> 人</span>
+      <span class="rest-capacity">残り<%= date.capacity_left %> 人</span>
     </td>
     <td>
       <%= link_to '予約する', '#', class: "btn btn-default disabled" %>
     </td>
-  <% elsif @event.available?(date) %>
+  <% elsif date.available? %>
     <td>
       <%= icon('far', 'circle', class: 'detail-icon') %>
-      <span class="rest-capacity">残り<%= @event.capacity_left_of(date) %> 人</span>
+      <span class="rest-capacity">残り<%= date.capacity_left %> 人</span>
     </td>
     <td>
       <%= link_to '予約する', new_event_reservation_path(event_id: date.event, date_id: date), class: "btn btn-default" %>
