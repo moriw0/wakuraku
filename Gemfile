@@ -71,3 +71,4 @@ gem 'net-imap', require: false
 gem 'net-pop', require: false
 
 gem 'action_args'
+gem 'rails_admin', '~> 3.0'

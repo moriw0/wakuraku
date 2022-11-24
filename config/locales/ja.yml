@@ -3,6 +3,8 @@ ja:
     models:
       event: ココロミ
       hosted_date: 開催日時
+      reservation: 予約情報
+      user: ユーザー
     attributes:
       event:
         name: 名前
