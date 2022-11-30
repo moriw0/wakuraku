@@ -3,5 +3,6 @@ class HomeController < ApplicationController
 
   def index
     @events = Event.with_recent_dates
+    authorize! :read, @events
   end
 end

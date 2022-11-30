@@ -1,12 +1,14 @@
 class ReservationsController < ApplicationController
   permits :comment, :hosted_date_id
-  
+  authorize_resource except: :canceled_index
+
   def index
     @reservations = current_user.reservations.with_recent_associations
   end
 
   def canceled_index
     @reservations = current_user.reservations.recent_canceled
+    authorize! :read, @reservations
   end
 
   def new(event_id:, date_id:)
