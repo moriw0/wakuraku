@@ -1,0 +1,15 @@
+<tr>
+  <th scope="row">
+    <%= link_to event_dashboard_reservations_path(reservation.event) do %>
+      <%= reservation.event.name %>
+    <% end %>
+  </th>
+  <td><%= format_updated_date_by(reservation) %></td>
+  <td><%= format_date(reservation.hosted_date) %></td>
+  <td><%= reservation.user.name %></td>
+  <% if reservation.is_canceled %>
+    <td>予約</td>
+  <% else %> 
+    <td>キャンセル</td>
+  <% end %> 
+</tr>

@@ -1,0 +1,73 @@
+<div class="eye-catching">
+  <div class="wrapper">
+    <div class="event-header">
+      <h1><%= @event.name %> </h1>
+      <div class="btn-space">
+        <% if @event.created_by?(current_user) %> 
+          <%= link_to '編集する', edit_event_path(@event), class: 'btn btn-default' %> 
+          <%= link_to '削除する', event_path(@event), class: 'btn btn-danger', method: :delete, data: { confirm: '本当に削除しますか？' } %> 
+        <% end %> 
+      </div>
+    </div>
+    <%= render 'shared/error_messages', model: @reservation unless @reservation.nil? %>
+    <div class="images-box">
+      <div class="image-box"></div>
+    </div>
+    <div class="event-title">
+      <h2><%= @event.title %> </h2>
+    </div>
+  </div>
+</div>
+<div class="detail-section">
+  <div class="wrapper">
+    <h2 class="section-header">このココロミについて</h2>
+    <div class="discription">
+      <p class="detail-text"><%=safe_join(@event.discription.split("\n"),tag(:br))%></p>
+    </div>
+    <table>
+      <tr>
+        <th><%= icon('fas', 'yen-sign', class: 'detail-icon')%>価格</th>
+        <td><%= @event.price %><span class="unit">円</span></td>
+      </tr>
+      <tr>
+        <th><%= icon('fas', 'stopwatch', class: 'detail-icon')%>所要時間</th>
+        <td><%= @event.required_time %><span class="unit">分</span></td>
+      </tr>
+      <tr>
+        <th><%= icon('fas', 'users', class: 'detail-icon')%>定員</h3></th>
+        <td><%= @event.capacity %><span class="unit">人</span></td>
+      </tr>
+      <tr>
+        <th><%= icon('fas', 'location-dot', class: 'detail-icon')%>場所</th>
+        <td><%= @event.place %></td>
+      </tr>
+      <tr>
+        <th><%= icon('fas', 'earth-asia', class: 'detail-icon')%>ステータス</th>
+        <% if @event.is_published? %> 
+          <td>公開</td>
+        <% else %> 
+          <td>非公開</td>
+        <% end %> 
+      </tr>
+    </table>
+  </div>
+</div>
+<div class="reservation-section">
+  <div class="wrapper">
+    <h2 class="section-header">このココロミの予約一覧</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">ココロミ</th>
+          <th scope="col">受付日</th>
+          <th scope="col">予約日時</th>
+          <th scope="col">名前</th>
+          <th scope="col">ステータス</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render partial: 'reserved_event_item', collection: @reservations, as: 'reservation' %>
+      </tbody>
+    </table>
+  </div>
+</div>
