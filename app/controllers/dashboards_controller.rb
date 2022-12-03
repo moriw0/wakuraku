@@ -7,4 +7,8 @@ class DashboardsController < ApplicationController
     @event = Event.find(event_id)
     @reservations = @event.reservations
   end
+
+  def event_index
+    @events = current_user.created_events
+  end
 end

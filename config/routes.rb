@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     resources :reservations, only: [:index, :show, :update, :destroy]
     get 'reservations/canceled', to: 'reservations#canceled_index', as: 'canceled_reservations'
     get 'dashboards/reservations', to: 'dashboards#reservation_index', as: 'dashboard_reservations'
+    get 'dashboards/events', to: 'dashboards#event_index', as: 'dashboard_events'
   end
 
   resources :events do

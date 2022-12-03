@@ -1,0 +1,15 @@
+<tr>
+  <th scope="row">
+    <%= link_to event_path(event) do %>
+      <%= event.name %>
+    <% end %>
+  </th>
+  <td><%= event.price %></td>
+  <td><%= event.place %></td>
+  <td><%= event.reservations.reserved.count %> </td>
+  <% if event.is_published %>
+    <td>公開</td>
+  <% else %> 
+    <td>非公開</td>
+  <% end %> 
+</tr>
