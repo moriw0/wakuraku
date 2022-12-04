@@ -11,4 +11,8 @@ class DashboardsController < ApplicationController
   def event_index
     @events = current_user.created_events
   end
+
+  def customer_index
+    @customers = current_user.customers
+  end
 end

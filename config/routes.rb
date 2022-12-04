@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     get 'reservations/canceled', to: 'reservations#canceled_index', as: 'canceled_reservations'
     get 'dashboards/reservations', to: 'dashboards#reservation_index', as: 'dashboard_reservations'
     get 'dashboards/events', to: 'dashboards#event_index', as: 'dashboard_events'
+    get 'dashboards/customers', to: 'dashboards#customer_index', as: 'dashboard_customers'
   end
 
   resources :events do

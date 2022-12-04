@@ -2,6 +2,7 @@ class User < ApplicationRecord
   has_many :created_events, class_name: 'Event', foreign_key: 'owner_id'
   has_many :reservations
   has_many :created_event_reservations, through: :created_events, source: :reservations
+  has_many :customers, -> { distinct }, through: :created_event_reservations, source: :user
 
   devise :database_authenticatable, :registerable,
   :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: %i[facebook]
