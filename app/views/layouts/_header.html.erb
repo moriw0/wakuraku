@@ -7,9 +7,9 @@
       <% else %>
         <li><%= link_to 'ココロミをつくる', new_event_path %></li>
         <li><%= link_to '予約したココロミ', user_reservations_path(current_user) %></li>
-        <li><%= link_to 'つくったココロミの予約一覧', user_dashboard_reservations_path(current_user) %></li>
-        <li><%= link_to 'つくったココロミ一覧', user_dashboard_events_path(current_user) %></li>
-        <li><%= link_to '顧客一覧', user_dashboard_customers_path(current_user) %></li>
+        <li><%= link_to 'つくったココロミの予約一覧', dashboard_reservations_path %></li>
+        <li><%= link_to 'つくったココロミ一覧', dashboard_events_path %></li>
+        <li><%= link_to '顧客一覧', dashboard_customers_path %></li>
         <li><%= link_to 'プロフィール', user_path(current_user) %></li>
         <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
       <% end %>
