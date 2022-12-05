@@ -24,7 +24,6 @@ class ReservationsController < ApplicationController
     end
     
     if @reservation.save
-      current_user.add_owner_unless_exist(@event.owner)
       redirect_to user_reservations_path(current_user), notice: 'ココロミを予約しました'
     else
       flash.now[:error] = 'ココロミを予約できませんでした'
