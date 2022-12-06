@@ -3,4 +3,23 @@
 // You can use Sass (SCSS) here: https://sass-lang.com/
 .detail-section, .dates-section {
   background-color: #fff;
+  .section-header {
+    margin-bottom: 30px;
+  }
+  text-align: center;
+  .user-image {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+  }
+}
+
+.customer-section {
+  margin: 0 auto;
+  text-align: center;
+  margin-bottom: 40px;
+  .detail-link {
+    display: block;
+  }
 }

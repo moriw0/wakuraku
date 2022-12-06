@@ -1,0 +1,52 @@
+<div class="detail-section">
+  <div class="wrapper">
+    <h2 class="section-header">顧客情報詳細</h2>
+    <%= link_to(user_path @customer, class: 'detail-link') do %>
+        <% if @customer.image.present? %>
+          <%= image_tag @customer.image, class: 'user-image' %>
+        <% else %>
+          <%= image_tag 'blank_user_image.png', class: 'user-image' %>
+        <% end %>
+    <% end %>
+    <table>
+      <tr>
+        <th>名前</th>
+        <td><%= @customer.name %></td>
+      </tr>
+      <tr>
+        <th>ニックネーム</th>
+        <td><%= @customer.nickname %></td>
+      </tr>
+      <tr>
+        <th>電話番号</th>
+        <td><%= @customer.phone_number %></td>
+      </tr>
+      <tr>
+        <th>メールアドレス</th>
+        <td><%= @customer.email %></td>
+      </tr>
+      <tr>
+        <th>お客さまメモ</th>
+        <td></td>
+      </tr>
+    </table>
+  </div>
+</div>
+<div class="reservation-section">
+  <div class="wrapper">
+    <h2 class="section-header">顧客の予約一覧</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">ココロミ</th>
+          <th scope="col">受付日</th>
+          <th scope="col">予約日時</th>
+          <th scope="col">ステータス</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render partial: 'reservaiton_item', collection: @reservations, as: 'reservation' %>
+      </tbody>
+    </table>
+  </div>
+</div>

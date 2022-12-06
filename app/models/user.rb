@@ -11,6 +11,10 @@ class User < ApplicationRecord
 
   validates :profile, length: { maximum: 200 }
 
+  def reservations_by_customer(id)
+    created_event_reservations.where(user_id: id)
+  end
+
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
