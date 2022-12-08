@@ -2,6 +2,7 @@ class User < ApplicationRecord
   has_many :created_events, class_name: 'Event', foreign_key: 'owner_id'
   has_many :reservations
   has_many :created_event_reservations, through: :created_events, source: :reservations
+  has_many :customers, -> { distinct }, through: :created_event_reservations, source: :user
 
   devise :database_authenticatable, :registerable,
   :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: %i[facebook]
@@ -9,6 +10,10 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
 
   validates :profile, length: { maximum: 200 }
+
+  def reservations_by_customer(id)
+    created_event_reservations.where(user_id: id)
+  end
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|

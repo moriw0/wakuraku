@@ -6,7 +6,6 @@
   </th>
   <td><%= format_updated_date_by(reservation) %></td>
   <td><%= format_date(reservation.hosted_date) %></td>
-  <td><%= reservation.user.name %></td>
   <% if reservation.is_canceled %>
     <td>キャンセル</td>
   <% else %> 
