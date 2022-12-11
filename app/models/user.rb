@@ -1,8 +1,13 @@
 class User < ApplicationRecord
-  has_many :created_events, class_name: 'Event', foreign_key: 'owner_id'
-  has_many :reservations
+  before_destroy :check_all_events_finished
+
+  has_many :created_events, class_name: 'Event', foreign_key: 'owner_id', dependent: :nullify
+  has_many :reservations, dependent: :nullify
   has_many :created_event_reservations, through: :created_events, source: :reservations
   has_many :customers, -> { distinct }, through: :created_event_reservations, source: :user
+  has_many :created_event_hosted_dates, through: :created_events, source: :hosted_dates
+  has_many :participating_events, through: :reservations, source: :event
+  has_many :participating_event_hosted_dates, through: :participating_events, source: :hosted_dates
 
   devise :database_authenticatable, :registerable,
   :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: %i[facebook]
@@ -25,5 +30,20 @@ class User < ApplicationRecord
       # uncomment the line below to skip the confirmation emails.
       # user.skip_confirmation!
     end
+  end
+
+  private
+
+  def check_all_events_finished
+    now = Time.zone.now
+    if created_event_hosted_dates.where(':now < ended_at', now: now).exists?
+      errors.add(:base, '公開中の未終了イベントが存在します')
+    end
+
+    if participating_event_hosted_dates.where(':now < ended_at', now: now).exists?
+      errors.add(:base, '未終了の参加イベントが存在します')
+    end
+
+    throw :abort unless errors.empty?
   end
 end
