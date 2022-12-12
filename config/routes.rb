@@ -8,8 +8,8 @@ Rails.application.routes.draw do
   }
 
   resources :users, only: :show do
-    resources :reservations, only: [:index, :show, :update, :destroy]
     get 'reservations/canceled', to: 'reservations#canceled_index', as: 'canceled_reservations'
+    resources :reservations, only: [:index, :show, :update, :destroy]
   end
 
   resources :events do

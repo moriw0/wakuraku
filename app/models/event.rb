@@ -20,7 +20,7 @@ class Event < ApplicationRecord
   scope :recent, -> { published.sorted }
 
   def created_by?(user)
-    return false unless user
+    return false unless user && owner
     owner.id == user.id
   end
 end

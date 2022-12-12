@@ -6,7 +6,11 @@
   </th>
   <td><%= format_updated_date_by(reservation) %></td>
   <td><%= format_date(reservation.hosted_date) %></td>
-  <td><%= reservation.user.name %></td>
+  <% if reservation.user.present?%> 
+    <td><%= reservation.user.name %></td>
+  <% else %> 
+    <td>退会したユーザー</td>
+  <% end %> 
   <% if reservation.is_canceled %>
     <td>キャンセル</td>
   <% else %> 

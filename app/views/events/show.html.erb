@@ -44,26 +44,32 @@
     </table>
   </div>
 </div>
-<div class="dates-section">
-  <div class="wrapper">
-    <h2 class="section-header">開催日から予約</h2>
-    <table>
-      <%= render partial: 'events/hosted_date_show', collection: @event.hosted_dates, as: 'date' %>
-    </table>
-  </div>
-</div>
-<div class="owner-section">
-  <div class="wrapper">
-    <h2 class="section-header">作家さん</h2>
-    <div class="owner-detail">
-      <%= link_to(user_path @event.owner, class: 'detail-link') do %>
-        <% if @event.owner.image.present? %>
-          <%= image_tag @event.owner.image, class: 'owner-image' %>
-        <% else %>
-          <%= image_tag 'blank_user_image.png', class: 'owner-image' %>
-        <% end %>
-        <p class="owner-name"><%= @event.owner.nickname %></p>
-      <% end %>
+<% if @event.owner.present? %> 
+  <div class="dates-section">
+    <div class="wrapper">
+      <h2 class="section-header">開催日から予約</h2>
+      <table>
+        <%= render partial: 'events/hosted_date_show', collection: @event.hosted_dates, as: 'date' %>
+      </table>
     </div>
   </div>
-</div>
+  <div class="owner-section">
+    <div class="wrapper">
+      <h2 class="section-header">作家さん</h2>
+      <div class="owner-detail">
+        <%= link_to(user_path @event.owner, class: 'detail-link') do %>
+          <% if @event.owner.image.present? %>
+            <%= image_tag @event.owner.image, class: 'owner-image' %>
+          <% else %>
+            <%= image_tag 'blank_user_image.png', class: 'owner-image' %>
+          <% end %>
+          <p class="owner-name"><%= @event.owner.nickname %></p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% else %> 
+  <div class="wrapper">
+    <p>オーナーが退会したため、予約することができません。</p>
+  </div>
+<% end %> 
