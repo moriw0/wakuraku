@@ -3,11 +3,6 @@ class User < ApplicationRecord
 
   has_many :created_events, class_name: 'Event', foreign_key: 'owner_id', dependent: :nullify
   has_many :reservations, dependent: :nullify
-  has_many :created_event_reservations, through: :created_events, source: :reservations
-  has_many :customers, -> { distinct }, through: :created_event_reservations, source: :user
-  has_many :created_event_hosted_dates, through: :created_events, source: :hosted_dates
-  has_many :participating_events, through: :reservations, source: :event
-  has_many :participating_event_hosted_dates, through: :participating_events, source: :hosted_dates
 
   devise :database_authenticatable, :registerable,
   :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: %i[facebook]
@@ -16,8 +11,24 @@ class User < ApplicationRecord
 
   validates :profile, length: { maximum: 200 }
 
-  def reservations_by_customer(id)
-    created_event_reservations.where(user_id: id)
+  def created_event_reservations
+    Reservation.joins(:event).where(event: { owner_id: self })
+  end
+
+  def customers
+    User.joins(reservations: :event).where(events: { owner_id: self }).distinct
+  end
+
+  def created_event_hosted_dates
+    HostedDate.joins(:event).where(events: { owner_id: self })
+  end
+
+  def participating_event_hosted_dates
+    HostedDate.joins(event: :reservations).where(reservations: { user_id: self })
+  end
+  
+  def reservations_by(customer)
+    created_event_reservations.where(user_id: customer)
   end
 
   def self.from_omniauth(auth)

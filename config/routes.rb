@@ -21,7 +21,7 @@ Rails.application.routes.draw do
     get 'reservations', to: 'dashboards#reservation_index', as: 'dashboard_reservations'
     get 'events', to: 'dashboards#event_index', as: 'dashboard_events'
     get 'customers', to: 'dashboards#customer_index', as: 'dashboard_customers'
-    get 'customers/:id', to: 'dashboards#customer_reservations', as: 'customer_reservations'
+    get 'customers/:customer_id', to: 'dashboards#customer_reservations', as: 'customer_reservations'
   end
 
   resource :retirements, only: [:new, :create]
