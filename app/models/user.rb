@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  include Discard::Model
   has_many :created_events, class_name: 'Event', foreign_key: 'owner_id'
   has_many :reservations
   has_many :created_event_reservations, through: :created_events, source: :reservations
@@ -13,6 +14,10 @@ class User < ApplicationRecord
 
   def reservations_by_customer(id)
     created_event_reservations.where(user_id: id)
+  end
+
+  def active_for_authentication?
+    super && kept?
   end
 
   def self.from_omniauth(auth)
