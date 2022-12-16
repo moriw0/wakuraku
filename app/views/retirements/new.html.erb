@@ -1,0 +1,14 @@
+<div class="retirement-section">
+  <div class="wrapper">
+    <h1>退会の確認</h1>
+    <%= render 'shared/error_messages', model: current_user %>
+    <p>退会した場合、ユーザーに関するデータがすべて削除されます</p>
+    <p>ただし、以下の場合は退会できません</p>
+    <ul>
+      <li>公開中の未終了ココロミがある場合</li>
+      <li>未終了の参加ココロミがある場合</li>
+    </ul>
+    <hr>
+    <%= link_to '退会する', retirements_path, method: :post, class: 'btn btn-danger', data: { confirm: '本当に退会しますか？' } %> 
+  </div>
+</div>

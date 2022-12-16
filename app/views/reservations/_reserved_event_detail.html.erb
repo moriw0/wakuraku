@@ -1,0 +1,4 @@
+<h2 class="list-group-item-heading"><%= reservation.event.name %></h2>
+<p class="mb-1"><%= reservation.event.title %></p>
+<p>予約受付日：<%= format_updated_date_by(reservation) %></p>
+<p>予約日時：<%= format_date(reservation.hosted_date) %></p>

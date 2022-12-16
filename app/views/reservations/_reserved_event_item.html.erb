@@ -1,6 +1,10 @@
-<%= link_to(user_reservation_path(id: reservation), class: 'list-group-item list-group-item-action') do %>
-  <h2 class="list-group-item-heading"><%= reservation.event.name %></h2>
-  <p class="mb-1"><%= reservation.event.title %></p>
-  <p>予約受付日：<%= format_updated_date_by(reservation) %></p>
-  <p>予約日時：<%= format_date(reservation.hosted_date) %></p>
-<% end %>
+<% if reservation.event.owner.kept? %> 
+  <%= link_to(user_reservation_path(id: reservation), class: 'list-group-item list-group-item-action') do %>
+    <%= render 'reserved_event_detail', reservation: reservation %> 
+  <% end %>
+<% else %> 
+  <div class="list-group-item list-group-item-action">
+    <p class="text-danger">退会したユーザーのココロミです。</p>
+    <%= render 'reserved_event_detail', reservation: reservation %> 
+  </div>
+<% end %> 

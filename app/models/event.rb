@@ -14,7 +14,7 @@ class Event < ApplicationRecord
   validates :is_published, inclusion: {in: [true, false]}
 
   scope :with_dates, -> { eager_load(:hosted_dates) }
-  scope :published, -> { where(is_published: true) }
+  scope :published, -> { joins(:owner).merge(User.kept).where(is_published: true) }
   scope :sorted, -> { order(updated_at: :desc) }
   scope :with_recent_dates, -> { with_dates.published.sorted }
   scope :recent, -> { published.sorted }
