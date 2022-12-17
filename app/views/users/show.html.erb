@@ -1,22 +1,26 @@
-<div class="events-section">
-  <div class="wrapper">
-    <% if @events.any? %>
-      <h1><%= @user.nickname %>のココロミ</h1>
-      <%= render partial: 'events/event_item', collection: @events, as: 'event' %>
-    <% end %>
-  </div>
-</div>
-<div class="user-section">
-  <div class="wrapper">
-    <div class="user-detail">
-      <% if @user.image.present? %>
-        <%= image_tag @user.image, class: 'user-image' %>
-      <% else %>
-        <%= image_tag 'blank_user_image.png', class: 'user-image' %>
+<% if @user.kept? %> 
+  <div class="events-section">
+    <div class="wrapper">
+      <% if @events.any? %>
+        <h1><%= @user.nickname %>のココロミ</h1>
+        <%= render partial: 'events/event_item', collection: @events, as: 'event' %>
       <% end %>
-      <p class="user-name"><%= @user.nickname %></p>
-      <p class="user-profile"><%= @user.profile %> </p>
-      <%= link_to 'プロフィールを編集する', edit_user_registration_path, class: 'user-edit-link' if current_user? %>
     </div>
   </div>
-</div>
+  <div class="user-section">
+    <div class="wrapper">
+      <div class="user-detail">
+        <% if @user.image.present? %>
+          <%= image_tag @user.image, class: 'user-image' %>
+        <% else %>
+          <%= image_tag 'blank_user_image.png', class: 'user-image' %>
+        <% end %>
+        <p class="user-name"><%= @user.nickname %></p>
+        <p class="user-profile"><%= @user.profile %> </p>
+        <%= link_to 'プロフィールを編集する', edit_user_registration_path, class: 'user-edit-link' if current_user? %>
+      </div>
+    </div>
+  </div>
+<% else %> 
+  <p>退会されたユーザーです。</p>
+<% end %> 

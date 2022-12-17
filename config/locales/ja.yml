@@ -30,21 +30,6 @@ ja:
         profile: 自己紹介
         phone_number: 電話番号
         remember_me: ログインしたままにする
-  devise:
-    registrations:
-      user:
-        signed_up: ユーザー登録しました
-        updated: ユーザー情報を更新しました
-    sessions:
-      user:
-        signed_in: ログインしました
-        signed_out: ログアウトしました
-    omniauth_callbacks:
-      user:
-        success: ログインしました
-    failure:
-      user:
-        unauthenticated: ログインしてください
   time:
     formats:
       default: "%Y年%m月%d日"

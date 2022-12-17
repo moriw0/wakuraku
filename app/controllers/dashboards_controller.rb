@@ -16,8 +16,8 @@ class DashboardsController < ApplicationController
     @customers = current_user.customers
   end
 
-  def customer_reservations(id)
-    @customer = User.find(id)
-    @reservations = current_user.reservations_by_customer(id)
+  def customer_reservations(customer_id)
+    @customer = User.find(customer_id)
+    @reservations = current_user.reservations_by(@customer)
   end
 end
