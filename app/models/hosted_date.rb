@@ -4,6 +4,7 @@ class HostedDate < ApplicationRecord
 
   validates :started_at, presence: true
   validates :ended_at, presence: true
+  validates :event_id, uniqueness: { scope: [:started_at, :ended_at] }
   validate :srart_at_should_be_before_ended_at
   
   def available?

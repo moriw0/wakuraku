@@ -3,5 +3,10 @@ FactoryBot.define do
     sequence(:started_at) { |n| 1.day.since(DateTime.parse("0#{n}:00")) }
     sequence(:ended_at) { |n| 1.day.since(DateTime.parse("0#{n+1}:00")) }
     association :event
+
+    trait :from_9_to_10 do
+      started_at { 1.day.since(DateTime.parse("09:00")) }
+      ended_at { 1.day.since(DateTime.parse("10:00")) }
+    end
   end
 end
