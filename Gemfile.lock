@@ -98,6 +98,11 @@ GEM
       activerecord (>= 4.2, < 8)
     erubi (1.11.0)
     execjs (2.8.1)
+    factory_bot (4.11.1)
+      activesupport (>= 3.0.0)
+    factory_bot_rails (4.11.1)
+      factory_bot (~> 4.11.1)
+      railties (>= 3.0.0)
     faraday (2.6.0)
       faraday-net_http (>= 2.0, < 3.1)
       ruby2_keywords (>= 0.0.4)
@@ -311,6 +316,7 @@ DEPENDENCIES
   cocoon
   devise
   discard (~> 1.2)
+  factory_bot_rails
   font-awesome-sass (~> 6.2.0)
   hirb
   hirb-unicode
