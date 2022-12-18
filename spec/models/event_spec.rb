@@ -95,4 +95,20 @@ RSpec.describe Event, type: :model do
     new_event.valid?
     expect(new_event.errors[:capacity]).to include("は3文字以下に設定して下さい。")
   end
+
+  describe 'owner' do
+    before do
+      @user = FactoryBot.create(:user)
+      @event = FactoryBot.create(:event, owner: @user)
+    end
+
+    it 'is this user' do
+      expect(@event).to be_created_by(@user)
+    end
+
+    it 'is not other user' do
+      other_user = FactoryBot.create(:user)
+      expect(@event).to_not be_created_by(other_user)
+    end
+  end
 end
