@@ -9,5 +9,9 @@ FactoryBot.define do
     capacity { 5 }
     is_published { true }
     association :owner
+
+    trait :with_hosted_dates do
+      after(:create) { |event| create_list(:hosted_date, 3, event: event) }
+    end
   end
 end

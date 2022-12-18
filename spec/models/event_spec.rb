@@ -96,6 +96,11 @@ RSpec.describe Event, type: :model do
     expect(new_event.errors[:capacity]).to include("は3文字以下に設定して下さい。")
   end
 
+  it 'can have many hosted_dates' do
+    event = FactoryBot.create(:event, :with_hosted_dates)
+    expect(event.hosted_dates.length).to eq 3
+  end
+
   describe 'owner' do
     before do
       @user = FactoryBot.create(:user)
