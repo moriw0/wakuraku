@@ -28,12 +28,12 @@ FactoryBot.define do
       started_at { 1.day.since(DateTime.parse('08:50')) }
       ended_at { 1.day.since(DateTime.parse('10:10')) }
     end
-  
+
     trait :from_9_10_to_9_50 do
       started_at { 1.day.since(DateTime.parse('09:10')) }
       ended_at { 1.day.since(DateTime.parse('09:50')) }
     end
-  
+
     trait :from_9_30_to_10_30 do
       started_at { 1.day.since(DateTime.parse('09:30')) }
       ended_at { 1.day.since(DateTime.parse('10:30')) }

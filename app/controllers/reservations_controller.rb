@@ -1,6 +1,6 @@
 class ReservationsController < ApplicationController
   permits :comment, :hosted_date_id
-  
+
   def index
     @reservations = current_user.reservations.with_recent_associations
   end
@@ -14,7 +14,7 @@ class ReservationsController < ApplicationController
     @date = HostedDate.find(date_id)
     @reservation = current_user.reservations.build
   end
-  
+
   def create(event_id:, date_id:, reservation:)
     @event = Event.find(event_id)
     @date = HostedDate.find(date_id)
@@ -22,7 +22,7 @@ class ReservationsController < ApplicationController
       t.event = @event
       t.hosted_date = @date
     end
-    
+
     if @reservation.save
       redirect_to user_reservations_path(current_user), notice: 'ココロミを予約しました'
     else
@@ -44,7 +44,7 @@ class ReservationsController < ApplicationController
       redirect_to user_reservations_path, notice: '予約を変更しました'
     else
       @event = Event.find(@reservation.event_id)
-      @date = HostedDate.find(@reservation.hosted_date_id) 
+      @date = HostedDate.find(@reservation.hosted_date_id)
       flash.now[:error] = '予約を変更できませんでした'
       render 'show'
     end

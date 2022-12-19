@@ -6,13 +6,13 @@ RSpec.describe User, type: :model do
     user.valid?
     expect(user).to be_valid
   end
-  
+
   it 'is invalid without an email' do
     user = FactoryBot.build(:user, email: nil)
     user.valid?
     expect(user.errors[:email]).to include('が入力されていません。')
   end
-  
+
   it 'is invalid without a password' do
     user = FactoryBot.build(:user, password: nil)
     user.valid?

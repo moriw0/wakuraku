@@ -8,7 +8,7 @@ class HostedDate < ApplicationRecord
   validate :started_at_should_be_after_now
   validate :srart_at_should_be_before_ended_at
   validate :hosted_date_should_not_be_overlapping
-  
+
   def available?
     true unless capacity_left.zero?
   end
@@ -16,7 +16,7 @@ class HostedDate < ApplicationRecord
   def capacity_left
     self.event.capacity - self.reservations.reserved.count
   end
-  
+
   private
 
   def started_at_should_be_after_now
@@ -43,5 +43,5 @@ class HostedDate < ApplicationRecord
 
       errors.add(:base, 'が既に存在する期間と重複しています。')
     end
-  end 
+  end
 end
