@@ -14,3 +14,10 @@ AllCops:
     - "bin/*"
     - "node_modules/**/*"
     - "Gemfile"
+
+Style/EmptyMethod:
+  Enabled: true
+  EnforcedStyle: expanded
+
+RSpec/NotToNot:
+  EnforcedStyle: to_not
