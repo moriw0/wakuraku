@@ -73,7 +73,7 @@ class User < ApplicationRecord
       phone_number: nil,
       uid: nil,
       name: nil,
-      image: nil,
+      image: nil
     )
   end
 end
