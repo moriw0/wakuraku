@@ -37,9 +37,9 @@ class HostedDate < ApplicationRecord
     return unless started_at && ended_at
 
     if HostedDate.where(event_id: event.id)
-      .where('started_at < ?', ended_at)
-      .where('ended_at > ?', started_at)
-      .where.not(id: id).exists?
+                 .where('started_at < ?', ended_at)
+                 .where('ended_at > ?', started_at)
+                 .where.not(id: id).exists?
 
       errors.add(:base, 'が既に存在する期間と重複しています。')
     end
