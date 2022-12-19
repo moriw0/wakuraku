@@ -5,8 +5,9 @@ class HostedDate < ApplicationRecord
   validates :started_at, presence: true
   validates :ended_at, presence: true
   validates :event_id, uniqueness: { scope: [:started_at, :ended_at] }
+  validate :started_at_should_be_after_now
   validate :srart_at_should_be_before_ended_at
-  validate :hosted_date_should_not_be_overlapping, if: :new_or_start_or_end_time_changed
+  validate :hosted_date_should_not_be_overlapping
   
   def available?
     true unless capacity_left.zero?
@@ -18,16 +19,18 @@ class HostedDate < ApplicationRecord
   
   private
 
+  def started_at_should_be_after_now
+    if started_at <= DateTime.now
+      errors.add(:started_at, 'は現在時刻より後に設定してください')
+    end
+  end
+
   def srart_at_should_be_before_ended_at
     return unless started_at && ended_at
 
     if started_at >= ended_at
       errors.add(:started_at, 'は終了時間よりも前に設定してください')
     end
-  end
-
-  def new_or_start_or_end_time_changed
-    new_record? || will_save_change_to_start_time? || will_save_change_to_end_time?
   end
 
   def hosted_date_should_not_be_overlapping
