@@ -68,7 +68,7 @@ class User < ApplicationRecord
   end
 
   def mask_personal_data!
-    self.update!(
+    update!(
       email: "#{SecureRandom.urlsafe_base64}@example.com",
       phone_number: nil,
       uid: nil,

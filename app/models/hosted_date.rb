@@ -14,7 +14,7 @@ class HostedDate < ApplicationRecord
   end
 
   def capacity_left
-    self.event.capacity - self.reservations.reserved.count
+    event.capacity - reservations.reserved.count
   end
 
   private
