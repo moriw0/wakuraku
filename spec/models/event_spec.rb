@@ -79,19 +79,19 @@ RSpec.describe Event, type: :model do
   end
 
   it 'is invalid with a longer price than maximum length 7' do
-    new_event = FactoryBot.build(:event, price: 10 ** 7)
+    new_event = FactoryBot.build(:event, price: 10**7)
     new_event.valid?
     expect(new_event.errors[:price]).to include('は7文字以下に設定して下さい。')
   end
 
   it 'is invalid with a longer required_time than maximum length 3' do
-    new_event = FactoryBot.build(:event, required_time: 10 ** 3)
+    new_event = FactoryBot.build(:event, required_time: 10**3)
     new_event.valid?
     expect(new_event.errors[:required_time]).to include('は3文字以下に設定して下さい。')
   end
 
   it 'is invalid with a longer capacity than maximum length 3' do
-    new_event = FactoryBot.build(:event, capacity: 10 ** 3)
+    new_event = FactoryBot.build(:event, capacity: 10**3)
     new_event.valid?
     expect(new_event.errors[:capacity]).to include('は3文字以下に設定して下さい。')
   end
