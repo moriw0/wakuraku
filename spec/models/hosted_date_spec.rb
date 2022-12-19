@@ -5,7 +5,7 @@ RSpec.describe HostedDate, type: :model do
     @event = FactoryBot.create(:event)
   end
 
-  it 'is valid when started_at is earlier then ended_at' do
+  it 'is valid when started_at is earlier than ended_at' do
     hosted_date = @event.hosted_dates.build(
       started_at: 1.day.since(DateTime.parse("09:00")),
       ended_at: 1.day.since(DateTime.parse("10:00")),
@@ -22,10 +22,60 @@ RSpec.describe HostedDate, type: :model do
     expect(hosted_date.errors[:started_at]).to include('は終了時間よりも前に設定してください')
   end
 
-  it 'is invalid when both stared_at and ended_at are the same datetime' do
+  it 'is valid when stared_at and ended_at are unique' do
+    FactoryBot.create(:hosted_date, :from_9_to_10, event: @event)
+    hosted_date = FactoryBot.build(:hosted_date, :from_10_to_11, event: @event)
+    expect(hosted_date).to be_valid
+  end
+
+  it 'is invalid when both stared_at and ended_at are not unique' do
     FactoryBot.create(:hosted_date, :from_9_to_10, event: @event)
     hosted_date = FactoryBot.build(:hosted_date, :from_9_to_10, event: @event)
     hosted_date.valid?
     expect(hosted_date.errors[:event_id]).to include('はすでに登録済みです')
+  end
+  
+  describe 'overlapping validation for the default held from 9:00 to 10:00' do
+    before do
+      FactoryBot.create(:hosted_date, :from_9_to_10, event: @event)
+    end
+
+    context 'not overlapping' do
+      it 'is valid when held from 8:00 to 9:00' do
+        hosted_date = FactoryBot.build(:hosted_date, :from_8_to_9, event: @event)
+        expect(hosted_date).to be_valid
+      end
+
+      it 'is valid when held from 10:00 to 11:00' do
+        hosted_date = FactoryBot.build(:hosted_date, :from_10_to_11, event: @event)
+        expect(hosted_date).to be_valid
+      end
+    end
+
+    context 'overlapping' do
+      it 'is invalid when held from 8:30 to 9:30' do
+        hosted_date = FactoryBot.build(:hosted_date, :from_8_30_to_9_30, event: @event)
+        hosted_date.valid?
+        expect(hosted_date.errors[:base]).to include('他の開催日時と重複しています。')
+      end
+      
+      it 'is invalid when held from 8:50 to 10:10' do
+        hosted_date = FactoryBot.build(:hosted_date, :from_8_50_to_10_10, event: @event)
+        hosted_date.valid?
+        expect(hosted_date.errors[:base]).to include('他の開催日時と重複しています。')
+      end
+      
+      it 'is invalid when held from 9:10 to 9:50' do
+        hosted_date = FactoryBot.build(:hosted_date, :from_9_10_to_9_50, event: @event)
+        hosted_date.valid?
+        expect(hosted_date.errors[:base]).to include('他の開催日時と重複しています。')
+      end
+      
+      it 'is invalid when held from 9:30 to 10:30' do
+        hosted_date = FactoryBot.build(:hosted_date, :from_9_30_to_10_30, event: @event)
+        hosted_date.valid?
+        expect(hosted_date.errors[:base]).to include('他の開催日時と重複しています。')
+      end
+    end
   end
 end
