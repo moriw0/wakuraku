@@ -38,14 +38,6 @@ RSpec/ContextWording:
 RSpec/ExampleLength:
   Max: 6
 
-# Offense count: 37
-# This cop supports unsafe autocorrection (--autocorrect-all).
-RSpec/FactoryBot/SyntaxMethods:
-  Exclude:
-    - 'spec/models/event_spec.rb'
-    - 'spec/models/hosted_date_spec.rb'
-    - 'spec/models/user_spec.rb'
-
 # Offense count: 19
 # Configuration parameters: AssignmentOnly.
 RSpec/InstanceVariable:
