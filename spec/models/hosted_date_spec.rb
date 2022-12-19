@@ -49,7 +49,7 @@ RSpec.describe HostedDate, type: :model do
     FactoryBot.create(:hosted_date, :from_9_to_10, event: @event)
     hosted_date = FactoryBot.build(:hosted_date, :from_9_to_10, event: @event)
     hosted_date.valid?
-    expect(hosted_date.errors[:event_id]).to include('はすでに登録済みです')
+    expect(hosted_date.errors[:event_id]).to include('内に既に存在する開催日時です。')
   end
   
   describe 'overlapping validation for the default held from 9:00 to 10:00' do
@@ -73,25 +73,25 @@ RSpec.describe HostedDate, type: :model do
       it 'is invalid when held from 8:30 to 9:30' do
         hosted_date = FactoryBot.build(:hosted_date, :from_8_30_to_9_30, event: @event)
         hosted_date.valid?
-        expect(hosted_date.errors[:base]).to include('他の開催日時と重複しています。')
+        expect(hosted_date.errors[:base]).to include('が既に存在する期間と重複しています。')
       end
       
       it 'is invalid when held from 8:50 to 10:10' do
         hosted_date = FactoryBot.build(:hosted_date, :from_8_50_to_10_10, event: @event)
         hosted_date.valid?
-        expect(hosted_date.errors[:base]).to include('他の開催日時と重複しています。')
+        expect(hosted_date.errors[:base]).to include('が既に存在する期間と重複しています。')
       end
       
       it 'is invalid when held from 9:10 to 9:50' do
         hosted_date = FactoryBot.build(:hosted_date, :from_9_10_to_9_50, event: @event)
         hosted_date.valid?
-        expect(hosted_date.errors[:base]).to include('他の開催日時と重複しています。')
+        expect(hosted_date.errors[:base]).to include('が既に存在する期間と重複しています。')
       end
       
       it 'is invalid when held from 9:30 to 10:30' do
         hosted_date = FactoryBot.build(:hosted_date, :from_9_30_to_10_30, event: @event)
         hosted_date.valid?
-        expect(hosted_date.errors[:base]).to include('他の開催日時と重複しています。')
+        expect(hosted_date.errors[:base]).to include('が既に存在する期間と重複しています。')
       end
     end
   end
