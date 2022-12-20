@@ -41,3 +41,11 @@ Metrics/BlockLength:
   Exclude:
     - "spec/**/*"
     - "test/factories/*"
+
+Style/ClassAndModuleChildren:
+  Description: Checks style of children classes and modules.
+  Enabled: false
+  EnforcedStyle: compact
+  SupportedStyles:
+  - nested
+  - compact
