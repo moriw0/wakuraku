@@ -92,22 +92,3 @@ Rails/WhereExists:
 Style/BlockComments:
   Exclude:
     - 'spec/spec_helper.rb'
-
-# Offense count: 1
-# Configuration parameters: MinBranchesCount.
-# case whenを使うかhashでマッピングさせるか指定する事
-Style/HashLikeCase:
-  Exclude:
-    - 'app/helpers/devise_helper.rb'
-
-# Offense count: 4
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyle, EnforcedShorthandSyntax, UseHashRocketsWithSymbolValues, PreferHashRocketsForNonAlnumEndingSymbols.
-# SupportedStyles: ruby19, hash_rockets, no_mixed_keys, ruby19_no_mixed_keys
-# SupportedShorthandSyntax: always, never, either
-# ハッシュ記法を指定する
-Style/HashSyntax:
-  Exclude:
-    - 'app/models/hosted_date.rb'
-    - 'app/models/user.rb'
-    - 'test/factories/events.rb'

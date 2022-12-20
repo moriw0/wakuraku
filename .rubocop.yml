@@ -49,3 +49,10 @@ Style/ClassAndModuleChildren:
   SupportedStyles:
   - nested
   - compact
+
+Style/HashSyntax:
+  EnforcedStyle: ruby19
+  EnforcedShorthandSyntax: either
+
+Style/HashLikeCase:
+  MinBranchesCount: 4
