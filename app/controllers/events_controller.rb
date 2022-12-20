@@ -11,7 +11,7 @@ class EventsController < ApplicationController
   def new
     @event = current_user.created_events.build
     @event.hosted_dates.build
-    @today = Date.today
+    @today = Time.zone.today
   end
 
   def create(event:)
@@ -20,7 +20,7 @@ class EventsController < ApplicationController
     if @event.save
       redirect_to @event, notice: '作成しました'
     else
-      @today = Date.today
+      @today = Time.zone.today
       render 'new'
     end
   end
@@ -31,7 +31,7 @@ class EventsController < ApplicationController
 
   def edit(id:)
     @event = current_user.created_events.find(id)
-    @today = Date.today
+    @today = Time.zone.today
   end
 
   def update(id:, event:)
@@ -39,7 +39,7 @@ class EventsController < ApplicationController
     if @event.update(event)
       redirect_to @event, notice: '更新しました'
     else
-      @today = Date.today
+      @today = Time.zone.today
       render 'edit'
     end
   end
