@@ -20,17 +20,13 @@ class HostedDate < ApplicationRecord
   private
 
   def started_at_should_be_after_now
-    if started_at <= DateTime.now
-      errors.add(:started_at, 'は現在時刻より後に設定してください')
-    end
+    errors.add(:started_at, 'は現在時刻より後に設定してください') if started_at <= DateTime.now
   end
 
   def srart_at_should_be_before_ended_at
     return unless started_at && ended_at
 
-    if started_at >= ended_at
-      errors.add(:started_at, 'は終了時間よりも前に設定してください')
-    end
+    errors.add(:started_at, 'は終了時間よりも前に設定してください') if started_at >= ended_at
   end
 
   def hosted_date_should_not_be_overlapping

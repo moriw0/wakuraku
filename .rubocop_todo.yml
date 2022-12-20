@@ -93,13 +93,6 @@ Style/BlockComments:
   Exclude:
     - 'spec/spec_helper.rb'
 
-# Offense count: 2
-# Configuration parameters: MinBodyLength, AllowConsecutiveConditionals.
-# ガードunlessに置き換えること
-Style/GuardClause:
-  Exclude:
-    - 'app/models/hosted_date.rb'
-
 # Offense count: 1
 # Configuration parameters: MinBranchesCount.
 # case whenを使うかhashでマッピングさせるか指定する事
@@ -118,11 +111,3 @@ Style/HashSyntax:
     - 'app/models/hosted_date.rb'
     - 'app/models/user.rb'
     - 'test/factories/events.rb'
-
-# Offense count: 4
-# This cop supports safe autocorrection (--autocorrect).
-# 短いif文は1行にすること
-Style/IfUnlessModifier:
-  Exclude:
-    - 'app/models/hosted_date.rb'
-    - 'app/models/user.rb'
