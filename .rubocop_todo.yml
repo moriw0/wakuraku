@@ -6,29 +6,16 @@
 # Note that changes in the inspected code, or installation of new
 # versions of RuboCop, may require this file to be generated again.
 
-# Offense count: 2
-# Configuration parameters: CountComments, CountAsOne, ExcludedMethods, AllowedMethods, AllowedPatterns, IgnoredMethods, inherit_mode.
-# AllowedMethods: refine
-Metrics/BlockLength:
-  Max: 33
-
 # Offense count: 1
 # Configuration parameters: CountComments, CountAsOne, ExcludedMethods, AllowedMethods, AllowedPatterns, IgnoredMethods.
+# メソッド内の行が多すぎる
 Metrics/MethodLength:
   Max: 12
-
-# Offense count: 18
-# Configuration parameters: EnforcedStyle, CheckMethodNames, CheckSymbols, AllowedIdentifiers, AllowedPatterns.
-# SupportedStyles: snake_case, normalcase, non_integer
-# AllowedIdentifiers: capture3, iso8601, rfc1123_date, rfc822, rfc2822, rfc3339
-Naming/VariableNumber:
-  Exclude:
-    - 'spec/models/hosted_date_spec.rb'
-    - 'test/factories/hosted_dates.rb'
 
 # Offense count: 2
 # Configuration parameters: Prefixes.
 # Prefixes: when, with, without
+# contextの命名はwhenとかから始めること
 RSpec/ContextWording:
   Exclude:
     - 'spec/models/hosted_date_spec.rb'
@@ -40,14 +27,15 @@ RSpec/ExampleLength:
 
 # Offense count: 19
 # Configuration parameters: AssignmentOnly.
+#letを使ったほうがいい
 RSpec/InstanceVariable:
   Exclude:
     - 'spec/models/event_spec.rb'
     - 'spec/models/hosted_date_spec.rb'
 
-# Offense count: 4
-# Configuration parameters: EnforcedStyle, AllowToTime.
-# SupportedStyles: strict, flexible
+Offense count: 4
+Configuration parameters: EnforcedStyle, AllowToTime.
+SupportedStyles: strict, flexible
 Rails/Date:
   Exclude:
     - 'app/controllers/events_controller.rb'
@@ -125,18 +113,6 @@ Style/ClassAndModuleChildren:
     - 'app/controllers/users/unlocks_controller.rb'
     - 'test/channels/application_cable/connection_test.rb'
     - 'test/test_helper.rb'
-
-# Offense count: 20
-# Configuration parameters: AllowedConstants.
-Style/Documentation:
-  Enabled: false
-
-# Offense count: 47
-# This cop supports unsafe autocorrection (--autocorrect-all).
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: always, always_true, never
-Style/FrozenStringLiteralComment:
-  Enabled: false
 
 # Offense count: 2
 # Configuration parameters: MinBodyLength, AllowConsecutiveConditionals.
