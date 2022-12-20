@@ -1,0 +1,58 @@
+inherit_from: .rubocop_todo.yml
+
+require:
+  - rubocop-performance
+  - rubocop-rails
+  - rubocop-rspec
+
+AllCops:
+  NewCops: enable
+  Exclude:
+    - "vendor/**/*"
+    - "db/**/*"
+    - "config/**/*"
+    - "bin/*"
+    - "node_modules/**/*"
+    - "Gemfile"
+
+Style/EmptyMethod:
+  Enabled: true
+  EnforcedStyle: expanded
+
+RSpec/NotToNot:
+  EnforcedStyle: to_not
+
+Naming/VariableNumber:
+  Description: checks the style of numbered variables
+  Enabled: true
+  EnforcedStyle: snake_case
+
+Style/FrozenStringLiteralComment:
+  Description: >-
+    Add the frozen_string_literal comment to the top of files
+    to help transition from Ruby 2.3.0 to Ruby 3.0.
+  Enabled: false
+
+Style/Documentation:
+  Description: Document classes and non-namespace modules.
+  Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+    - "spec/**/*"
+    - "test/factories/*"
+
+Style/ClassAndModuleChildren:
+  Description: Checks style of children classes and modules.
+  Enabled: false
+  EnforcedStyle: compact
+  SupportedStyles:
+  - nested
+  - compact
+
+Style/HashSyntax:
+  EnforcedStyle: ruby19
+  EnforcedShorthandSyntax: either
+
+Style/HashLikeCase:
+  MinBranchesCount: 4
