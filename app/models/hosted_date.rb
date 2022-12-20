@@ -4,7 +4,7 @@ class HostedDate < ApplicationRecord
 
   validates :started_at, presence: true
   validates :ended_at, presence: true
-  validates :event_id, uniqueness: { scope: [:started_at, :ended_at], message: '内に既に存在する開催日時です。' }
+  validates :event_id, uniqueness: { scope: %i[started_at ended_at], message: '内に既に存在する開催日時です。' }
   validate :started_at_should_be_after_now
   validate :srart_at_should_be_before_ended_at
   validate :hosted_date_should_not_be_overlapping
