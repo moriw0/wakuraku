@@ -1,7 +1,9 @@
 FactoryBot.define do
   factory :hosted_date do
-    sequence(:started_at) { |n| 1.day.since(DateTime.parse("0#{n}:00")) }
-    sequence(:ended_at) { |n| 1.day.since(DateTime.parse("0#{n + 1}:00")) }
+    started_at = 1.day.since(Time.parse('00:00'))
+    ended_at = 1.day.since(Time.parse('01:00'))
+    sequence(:started_at) { |n| started_at + n.hour }
+    sequence(:ended_at) { |n| ended_at + n.hour }
     association :event
 
     trait :from_9_to_10 do
