@@ -22,16 +22,16 @@ RSpec.describe HostedDate, type: :model do
 
   it 'is valid when started_at is before ended_at' do
     hosted_date = event.hosted_dates.build(
-      started_at: 1.day.since(DateTime.parse('09:00')),
-      ended_at: 1.day.since(DateTime.parse('10:00'))
+      started_at: 1.day.since(Time.zone.parse('09:00')),
+      ended_at: 1.day.since(Time.zone.parse('10:00'))
     )
     expect(hosted_date).to be_valid
   end
 
   it 'is invalid when ended_at is before started_at' do
     hosted_date = event.hosted_dates.build(
-      started_at: 1.day.since(DateTime.parse('10:00')),
-      ended_at: 1.day.since(DateTime.parse('09:00'))
+      started_at: 1.day.since(Time.zone.parse('10:00')),
+      ended_at: 1.day.since(Time.zone.parse('09:00'))
     )
     hosted_date.valid?
     expect(hosted_date.errors[:started_at]).to include('は終了時間よりも前に設定してください')
