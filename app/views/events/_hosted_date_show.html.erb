@@ -3,7 +3,7 @@
     <%= icon('far', 'calendar-days', class: 'detail-icon')%>
     <%= format_date(date) %>
   </th>
-  <% if @event.created_by?(current_user) %>
+  <% if @event.created_by?(current_user) || date.reserved_by?(current_user)%>
     <td>
       <%= icon('far', 'circle', class: 'detail-icon') %>
       <span class="rest-capacity">残り<%= date.capacity_left %> 人</span>
