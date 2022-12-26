@@ -4,7 +4,7 @@ RSpec.describe HostedDate, type: :model do
   let(:event) { create(:event) }
 
   it 'is valid when stated_at is after now' do
-    hosted_date =  event.hosted_dates.build(
+    hosted_date = event.hosted_dates.build(
       started_at: 1.minute.from_now,
       ended_at: 1.hour.from_now
     )

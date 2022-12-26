@@ -137,7 +137,7 @@ RSpec.describe EventsController, type: :controller do
 
       it 'retunes a 302 response' do
         patch :update, params: { id: event.id, event: event_params }
-        expect(response).to have_http_status'302'
+        expect(response).to have_http_status '302'
       end
       
       it 'redirects to the sign-in page' do
@@ -178,7 +178,7 @@ RSpec.describe EventsController, type: :controller do
 
       it 'retunes a 302 response' do
         delete :destroy, params: { id: event.id }
-        expect(response).to have_http_status'302'
+        expect(response).to have_http_status '302'
       end
       
       it 'redirects to the sign-in page' do
