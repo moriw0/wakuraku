@@ -17,6 +17,10 @@ class HostedDate < ApplicationRecord
     event.capacity - reservations.reserved.count
   end
 
+  def reserved_by?(user)
+    reservations.exists?(user: user, is_canceled: false)
+  end
+
   private
 
   def started_at_should_be_after_now
