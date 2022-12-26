@@ -6,7 +6,7 @@ FactoryBot.define do
     discription { '見た目も可愛くてリラックス以外の効能もあります' }
     price { 500 }
     required_time { 30 }
-    capacity { 5 }
+    capacity { 2 }
     is_published { true }
     association :owner
 

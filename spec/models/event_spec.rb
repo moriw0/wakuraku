@@ -102,18 +102,16 @@ RSpec.describe Event, type: :model do
   end
 
   describe 'owner' do
-    before do
-      @user = create(:user)
-      @event = create(:event, owner: @user)
-    end
+    let(:user) { create(:user) }
+    let(:event) { create(:event, owner: user) }
 
     it 'is this user' do
-      expect(@event).to be_created_by(@user)
+      expect(event).to be_created_by(user)
     end
 
     it 'is not other user' do
       other_user = create(:user)
-      expect(@event).to_not be_created_by(other_user)
+      expect(event).to_not be_created_by(other_user)
     end
   end
 end
