@@ -1,6 +1,6 @@
 class DashboardsController < ApplicationController
   def reservation_index
-    @reservations = current_user.created_event_reservations
+    @reservations = Reservation.of_created_events_by(current_user)
   end
 
   def event_reservations(event_id)
@@ -13,7 +13,7 @@ class DashboardsController < ApplicationController
   end
 
   def customer_index
-    @customers = current_user.customers
+    @customers = User.customers_of(current_user)
   end
 
   def customer_reservations(customer_id)
