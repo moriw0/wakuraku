@@ -11,22 +11,19 @@ class User < ApplicationRecord
 
   validates :profile, length: { maximum: 200 }
 
-  def created_event_reservations
-    Reservation.joins(:event).where(event: { owner_id: self })
-  end
-
-  def customers
-    User.kept.joins(reservations: :event).where(events: { owner_id: self }).distinct
+  def self.customers_of(user)
+    kept.joins(reservations: :event).where(events: { owner_id: user }).distinct
   end
 
   def reservations_by(customer)
-    created_event_reservations.where(user_id: customer)
+    Reservation.of_created_events_by(self).where(user_id: customer)
   end
 
-  def mask_and_discard
+  def retire_process_and_discard
     return false unless check_all_events_finished
 
     ActiveRecord::Base.transaction do
+      hide_created_events!
       mask_personal_data!
       discard!
     end
@@ -48,28 +45,31 @@ class User < ApplicationRecord
 
   def check_all_events_finished
     now = Time.zone.now
-    errors.add(:base, '公開中の未終了イベントが存在します') if created_event_hosted_dates.where(':now < ended_at', now: now).exists?
+    if HostedDate.hosted_dates_of_created_events_by(self).where(':now < ended_at', now: now).exists?
+      errors.add(:base, '公開中の未終了イベントが存在します') 
+    end
 
-    errors.add(:base, '未終了の参加イベントが存在します') if participating_event_hosted_dates.where(':now < ended_at', now: now).exists?
+    if HostedDate.hosted_dates_of_participating_events_by(self).where(':now < ended_at', now: now).exists?
+      errors.add(:base, '未終了の参加イベントが存在します') 
+    end
 
     errors.empty?
   end
 
-  def created_event_hosted_dates
-    HostedDate.joins(:event).where(events: { owner_id: self, is_published: true })
-  end
-
-  def participating_event_hosted_dates
-    HostedDate.joins(reservations: :event).where(reservations: { user_id: self, is_canceled: false })
+  def hide_created_events!
+    created_events.each { |event| event.update!(is_published: false) }
   end
 
   def mask_personal_data!
+    dummy_url = "#{SecureRandom.urlsafe_base64}@example.com"
+    dummy_id = "discarded_#{self.id}"
+
     update!(
-      email: "#{SecureRandom.urlsafe_base64}@example.com",
-      phone_number: nil,
-      uid: nil,
-      name: nil,
-      image: nil
+      email: dummy_url,
+      image: dummy_url,
+      uid: dummy_id,
+      name: dummy_id,
+      phone_number: '000-0000-0000'
     )
   end
 end
