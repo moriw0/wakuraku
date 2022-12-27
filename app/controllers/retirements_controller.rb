@@ -3,7 +3,7 @@ class RetirementsController < ApplicationController
   end
 
   def create
-    if current_user.mask_and_discard
+    if current_user.retire_process_and_discard
       reset_session
       redirect_to root_path, notice: '退会完了しました'
     else

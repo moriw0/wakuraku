@@ -9,11 +9,11 @@ class HostedDate < ApplicationRecord
   validate :srart_at_should_be_before_ended_at
   validate :hosted_date_should_not_be_overlapping
 
-  def self.hosted_dates_of_created_events_by(user)
+  def self.of_created_events_by(user)
     joins(:event).where(events: { owner_id: user, is_published: true })
   end
 
-  def self.hosted_dates_of_participating_events_by(user)
+  def self.of_participating_events_by(user)
     joins(reservations: :event).where(reservations: { user_id: user, is_canceled: false })
   end
 
