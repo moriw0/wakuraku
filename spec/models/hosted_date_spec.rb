@@ -55,7 +55,7 @@ RSpec.describe HostedDate, type: :model do
       create(:hosted_date, :from_9_to_10, event: event)
     end
 
-    context 'not overlapping' do
+    context 'unless overlapping' do
       it 'is valid when held from 8:00 to 9:00' do
         hosted_date = build(:hosted_date, :from_8_to_9, event: event)
         expect(hosted_date).to be_valid
@@ -67,7 +67,7 @@ RSpec.describe HostedDate, type: :model do
       end
     end
 
-    context 'overlapping' do
+    context 'if overlapping' do
       it 'is invalid when held from 8:30 to 9:30' do
         hosted_date = build(:hosted_date, :from_8_30_to_9_30, event: event)
         hosted_date.valid?

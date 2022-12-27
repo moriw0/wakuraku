@@ -46,11 +46,11 @@ class User < ApplicationRecord
   def check_all_events_finished
     now = Time.zone.now
     if HostedDate.of_created_events_by(self).where(':now < ended_at', now: now).exists?
-      errors.add(:base, '公開中の未終了イベントが存在します') 
+      errors.add(:base, '公開中の未終了イベントが存在します')
     end
 
     if HostedDate.of_participating_events_by(self).where(':now < ended_at', now: now).exists?
-      errors.add(:base, '未終了の参加イベントが存在します') 
+      errors.add(:base, '未終了の参加イベントが存在します')
     end
 
     errors.empty?
@@ -62,7 +62,7 @@ class User < ApplicationRecord
 
   def mask_personal_data!
     dummy_url = "#{SecureRandom.urlsafe_base64}@example.com"
-    dummy_id = "discarded_#{self.id}"
+    dummy_id = "discarded_#{id}"
 
     update!(
       email: dummy_url,

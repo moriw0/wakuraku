@@ -1,11 +1,11 @@
 require 'rails_helper'
 
-RSpec.describe "Reservations", type: :system, js: true do
+RSpec.describe 'Reservations', type: :system, js: true do
   context 'when user signs in' do
     let(:owner) { create(:user) }
     let!(:event) { create(:event, owner: owner) }
-    let!(:hosted_date1) { create(:hosted_date, :from_8_to_9, event: event) }
-    let!(:hosted_date2) { create(:hosted_date, :from_10_to_11, event: event) }
+    let!(:hosted_date_1) { create(:hosted_date, :from_8_to_9, event: event) }
+    let!(:hosted_date_2) { create(:hosted_date, :from_10_to_11, event: event) }
     let(:user) { create(:user) }
 
     scenario 'user reserves the event' do
@@ -35,7 +35,7 @@ RSpec.describe "Reservations", type: :system, js: true do
       before do
         user.reservations.create(
           event: event,
-          hosted_date: hosted_date1,
+          hosted_date: hosted_date_1
         )
 
         sign_in user
@@ -58,8 +58,8 @@ RSpec.describe "Reservations", type: :system, js: true do
           end
         end
       end
-  
-      scenario 'user can change to other hosted_date for the reservation ' do
+
+      scenario 'user can change to other hosted_date for the reservation' do
         visit root_path
         click_link '予約したココロミ'
         expect(page).to have_content 'バスソルト作り'
@@ -73,7 +73,7 @@ RSpec.describe "Reservations", type: :system, js: true do
         expect(page).to have_content 'バスソルト作り'
         expect(page).to have_content '10:00 - 11:00'
       end
-    
+
       scenario 'user can cancel the reservation' do
         visit root_path
         click_link '予約したココロミ'
@@ -84,25 +84,25 @@ RSpec.describe "Reservations", type: :system, js: true do
         click_link 'この予約をキャンセルする'
         page.accept_confirm
         expect(page).to have_content '予約をキャンセルしました'
-        expect(user.reservations.find_by(hosted_date: hosted_date1).is_canceled).to be_truthy 
+        expect(user.reservations.find_by(hosted_date: hosted_date_1).is_canceled).to be_truthy
         click_link 'キャンセル済み一覧'
         expect(page).to have_content 'バスソルト作り'
-        expect(page).to have_content "キャンセル日：#{I18n.l  Time.current}"
+        expect(page).to have_content "キャンセル日：#{I18n.l Time.current}"
       end
     end
 
     context 'after other users reserve' do
-      let(:other_user1) { create(:user) }
-      let(:other_user2) { create(:user) }
-      
+      let(:other_user_1) { create(:user) }
+      let(:other_user_2) { create(:user) }
+
       scenario 'user can not click the link to no capacity' do
-        other_user1.reservations.create(
+        other_user_1.reservations.create(
           event: event,
-          hosted_date: hosted_date2,
+          hosted_date: hosted_date_2
         )
-        other_user2.reservations.create(
+        other_user_2.reservations.create(
           event: event,
-          hosted_date: hosted_date2,
+          hosted_date: hosted_date_2
         )
 
         sign_in user
@@ -128,14 +128,15 @@ RSpec.describe "Reservations", type: :system, js: true do
   context 'when owner signs in' do
     let(:owner) { create(:user) }
     let(:event) { create(:event, owner: owner) }
-    let!(:hosted_date1) { create(:hosted_date, :from_8_to_9, event: event) }
-    let!(:hosted_date2) { create(:hosted_date, :from_10_to_11, event: event) }
+    let!(:hosted_date) { create(:hosted_date, :from_8_to_9, event: event) }
     let(:user) { create(:user) }
-    
+
     before do
+      create(:hosted_date, :from_10_to_11, event: event)
+
       user.reservations.create(
         event: event,
-        hosted_date: hosted_date1,
+        hosted_date: hosted_date
       )
     end
 
