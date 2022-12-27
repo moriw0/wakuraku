@@ -21,30 +21,104 @@ RSpec.describe "Dashboards", type: :system do
     visit root_path
   end
   
-  scenario 'owner gets #reservation_index' do
+  scenario 'owner gets #reservation_index and then #event_reservations' do
     click_link 'つくったココロミの予約一覧'
     expect(page).to have_content 'つくったココロミの予約一覧'
 
     within all('tr')[1] do
-      expect(page).to have_content 'バスソルト作り'
-      expect(page).to have_content '08:00 - 09:00'
-      expect(page).to have_content user1.name
+      expect(find 'th').to have_content 'バスソルト作り'
+      expect(all('td')[1]).to have_content '08:00 - 09:00'
+      expect(all('td')[2]).to have_content user1.name
     end
     within all('tr')[2] do
-      expect(page).to have_content 'バスソルト作り'
-      expect(page).to have_content '10:00 - 11:00'
-      expect(page).to have_content user1.name
+      expect(find 'th').to have_content 'バスソルト作り'
+      expect(all('td')[1]).to have_content '10:00 - 11:00'
+      expect(all('td')[2]).to have_content user2.name
+      click_link 'バスソルト作り'
+    end
+    within '.reservation-section' do
+      expect(page).to have_content 'このココロミの予約一覧'
+      within all('tr')[1] do
+        expect(find 'th').to have_content 'バスソルト作り'
+        expect(all('td')[1]).to have_content '08:00 - 09:00'
+        expect(all('td')[2]).to have_content user1.name
+      end
+      within all('tr')[2] do
+        expect(find 'th').to have_content 'バスソルト作り'
+        expect(all('td')[1]).to have_content '10:00 - 11:00'
+        expect(all('td')[2]).to have_content user2.name
+      end
+      expect(all('tr')[3]).to eq nil
     end
   end
-  scenario 'owner gets #event_reservations' do 
+
+  scenario 'owner gets #event_index and then #event_reservations' do
+    click_link 'つくったココロミ一覧'
+    expect(page).to have_content 'ココロミ一覧'
+
+    within all('tr')[1] do
+      expect(find 'th').to have_content 'バスソルト作り'
+      expect(all('td')[0]).to have_content '500'
+      expect(all('td')[2]).to have_content '2'
+      expect(all('td')[3]).to have_content '公開'
+      click_link 'バスソルト作り'
+    end
+    within '.reservation-section' do
+      expect(page).to have_content 'このココロミの予約一覧'
+      within all('tr')[1] do
+        expect(find 'th').to have_content 'バスソルト作り'
+        expect(all('td')[1]).to have_content '08:00 - 09:00'
+        expect(all('td')[2]).to have_content user1.name
+      end
+      within all('tr')[2] do
+        expect(find 'th').to have_content 'バスソルト作り'
+        expect(all('td')[1]).to have_content '10:00 - 11:00'
+        expect(all('td')[2]).to have_content user2.name
+      end
+      expect(all('tr')[3]).to eq nil
+    end
   end
 
-  scenario 'owner gets #event_index' do 
-  end
+  scenario 'owner gets #customer_index and then #customer_reservations' do 
+    click_link '顧客一覧'
+    expect(page).to have_content '顧客一覧'
 
-  scenario 'owner gets #customer_index' do 
-  end
+    within all('tr')[1] do
+      expect(find 'th').to have_content user1.nickname
+      expect(all('td')[0]).to have_content user1.name
+      expect(all('td')[1]).to have_content user1.phone_number
+      expect(all('td')[2]).to have_content user1.email
+    end
+    within all('tr')[2] do
+      expect(find 'th').to have_content user2.nickname
+      expect(all('td')[0]).to have_content user2.name
+      expect(all('td')[1]).to have_content user2.phone_number
+      expect(all('td')[2]).to have_content user2.email
+    end
+    expect(all('tr')[3]).to eq nil
 
-  scenario 'owner gets #customer_reservations' do 
+    # save_and_open_page
+    click_link user2.nickname
+    within '.detail-section' do
+      expect(page).to have_content '顧客情報詳細'
+      within all('tr')[0] do
+        expect(find 'td').to have_content user2.name
+      end
+      within all('tr')[1] do
+        expect(find 'td').to have_content user2.nickname
+      end
+      within all('tr')[3] do
+        expect(find 'td').to have_content user2.email
+      end
+    end
+    within '.reservation-section' do
+      expect(page).to have_content '顧客の予約一覧'
+      within all('tr')[1] do
+        expect(find 'th').to have_content 'バスソルト作り'
+        expect(all('td')[1]).to have_content '10:00 - 11:00'
+        expect(all('td')[2]).to have_content '予約'
+      end
+      expect(all('tr')[2]).to eq nil
+    end
   end
 end
