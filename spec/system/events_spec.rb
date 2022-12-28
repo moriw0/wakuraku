@@ -25,7 +25,7 @@ RSpec.describe 'Events', type: :system do
 
       expect(page).to have_content '作成しました'
       expect(page).to have_content '予約する'
-      expect(page).to have_content user.name.to_s
+      expect(page).to have_content user.nickname.to_s
     }.to change(user.created_events, :count).by(1)
   end
 end

@@ -1,19 +1,18 @@
 class HostedDate < ApplicationRecord
   belongs_to :event
-  has_many :reservations
+  has_many :reservations, dependent: :restrict_with_exception
 
   validates :started_at, presence: true
   validates :ended_at, presence: true
-  validates :event_id, uniqueness: { scope: %i[started_at ended_at], message: '内に既に存在する開催日時です。' }
   validate :started_at_should_be_after_now
   validate :srart_at_should_be_before_ended_at
   validate :hosted_date_should_not_be_overlapping
 
-  def self.hosted_dates_of_created_events_by(user)
+  def self.of_created_events_by(user)
     joins(:event).where(events: { owner_id: user, is_published: true })
   end
 
-  def self.hosted_dates_of_participating_events_by(user)
+  def self.of_participating_events_by(user)
     joins(reservations: :event).where(reservations: { user_id: user, is_canceled: false })
   end
 

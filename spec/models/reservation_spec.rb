@@ -7,7 +7,7 @@ RSpec.describe Reservation, type: :model do
       reservation.valid?
       expect(reservation).to be_valid
     end
-    
+
     it 'is valid with no comment' do
       reservation = build(:reservation, comment: nil)
       reservation.valid?
@@ -17,18 +17,18 @@ RSpec.describe Reservation, type: :model do
 
   context 'with hosted_dates' do
     let(:event) { create(:event) }
-    let(:hosted_date1) { create(:hosted_date, :from_8_to_9, event: event) }
-    let(:hosted_date2) { create(:hosted_date, :from_10_to_11, event: event) }
+    let(:hosted_date_1) { create(:hosted_date, :from_8_to_9, event: event) }
+    let(:hosted_date_2) { create(:hosted_date, :from_10_to_11, event: event) }
     let(:user) { create(:user) }
 
     it 'is valid with the different hosted_date' do
       user.reservations.create(
         event: event,
-        hosted_date: hosted_date1
+        hosted_date: hosted_date_1
       )
       reservation = user.reservations.build(
         event: event,
-        hosted_date: hosted_date2
+        hosted_date: hosted_date_2
       )
       expect(reservation).to be_valid
     end
@@ -36,17 +36,17 @@ RSpec.describe Reservation, type: :model do
     it 'is invalid with the same hosted_date' do
       user.reservations.create(
         event: event,
-        hosted_date: hosted_date1
+        hosted_date: hosted_date_1
       )
       reservation = user.reservations.build(
         event: event,
-        hosted_date: hosted_date1
+        hosted_date: hosted_date_1
       )
       reservation.valid?
-      expect(reservation.errors[:hosted_date_id]).to include 'はすでに登録済みです' 
+      expect(reservation.errors[:hosted_date_id]).to include 'はすでに登録済みです'
     end
   end
-  
+
   context 'with is_canceled' do
     it 'is canceld when is_canceled is true' do
       reservation = build(:reservation, is_canceled: true)

@@ -1,7 +1,7 @@
 class Event < ApplicationRecord
   belongs_to :owner, class_name: 'User'
   has_many :hosted_dates, dependent: :destroy
-  has_many :reservations
+  has_many :reservations, dependent: :restrict_with_exception
   accepts_nested_attributes_for :hosted_dates, allow_destroy: true
 
   validates :name, length: { maximum: 50 }, presence: true

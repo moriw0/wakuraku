@@ -1,8 +1,9 @@
 class User < ApplicationRecord
   include Discard::Model
 
-  has_many :created_events, class_name: 'Event', foreign_key: 'owner_id'
-  has_many :reservations
+  has_many :created_events, class_name: 'Event', foreign_key: 'owner_id', dependent: :restrict_with_exception,
+                            inverse_of: 'owner'
+  has_many :reservations, dependent: :restrict_with_exception
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: %i[facebook]
@@ -45,12 +46,12 @@ class User < ApplicationRecord
 
   def check_all_events_finished
     now = Time.zone.now
-    if HostedDate.hosted_dates_of_created_events_by(self).where(':now < ended_at', now: now).exists?
-      errors.add(:base, '公開中の未終了イベントが存在します') 
+    if HostedDate.of_created_events_by(self).exists?([':now < ended_at', { now: now }])
+      errors.add(:base, '公開中の未終了イベントが存在します')
     end
 
-    if HostedDate.hosted_dates_of_participating_events_by(self).where(':now < ended_at', now: now).exists?
-      errors.add(:base, '未終了の参加イベントが存在します') 
+    if HostedDate.of_participating_events_by(self).exists?([':now < ended_at', { now: now }])
+      errors.add(:base, '未終了の参加イベントが存在します')
     end
 
     errors.empty?
@@ -62,7 +63,7 @@ class User < ApplicationRecord
 
   def mask_personal_data!
     dummy_url = "#{SecureRandom.urlsafe_base64}@example.com"
-    dummy_id = "discarded_#{self.id}"
+    dummy_id = "discarded_#{id}"
 
     update!(
       email: dummy_url,

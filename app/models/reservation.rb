@@ -15,7 +15,7 @@ class Reservation < ApplicationRecord
   scope :sorted, -> { order(updated_at: :desc) }
   scope :with_recent_associations, -> { with_associations.reserved.sorted }
   scope :recent_canceled, -> { with_associations.canceled.sorted }
-  
+
   def self.of_created_events_by(user)
     joins(:event).where(event: { owner_id: user })
   end

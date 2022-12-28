@@ -1,5 +1,3 @@
-inherit_from: .rubocop_todo.yml
-
 require:
   - rubocop-performance
   - rubocop-rails
@@ -14,6 +12,8 @@ AllCops:
     - "bin/*"
     - "node_modules/**/*"
     - "Gemfile"
+    - "spec/rails_helper.rb"
+    - "spec/spec_helper.rb"
 
 Style/EmptyMethod:
   Enabled: true
@@ -56,3 +56,33 @@ Style/HashSyntax:
 
 Style/HashLikeCase:
   MinBranchesCount: 4
+
+RSpec/Capybara/FeatureMethods:
+  Enabled: false
+
+RSpec/ExampleLength:
+  Enabled: false
+
+RSpec/MultipleExpectations:
+  Enabled: false
+
+Style/BlockDelimiters:
+  EnforcedStyle: braces_for_chaining
+
+RSpec/ContextWording:
+  Prefixes:
+    - when
+    - with
+    - without
+    - if
+    - unless
+    - for
+    - before
+    - after
+    - during
+
+RSpec/NestedGroups:
+  Max: 4
+
+RSpec/MultipleMemoizedHelpers:
+  Max: 7

@@ -15,6 +15,7 @@ class ReservationsController < ApplicationController
     @reservation = current_user.reservations.build
   end
 
+  # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
   def create(event_id:, date_id:, reservation:)
     @event = Event.find(event_id)
     @date = HostedDate.find(date_id)
@@ -24,12 +25,13 @@ class ReservationsController < ApplicationController
     end
 
     if @reservation.save
-      redirect_to user_reservations_path(current_user), notice: 'ココロミを予約しました'
+      redirect_to user_reservations_path(current_user), notice: t(:notice_reservation_create)
     else
       flash.now[:error] = 'ココロミを予約できませんでした'
       render 'events/show'
     end
   end
+  # rubocop:enable Metrics/AbcSize, Metrics/MethodLength
 
   def show(id:)
     @reservation = Reservation.find(id)
@@ -41,7 +43,7 @@ class ReservationsController < ApplicationController
     @reservation = Reservation.find(id)
 
     if @reservation.update(reservation)
-      redirect_to user_reservations_path, notice: '予約を変更しました'
+      redirect_to user_reservations_path, notice: t(:notice_reservation_update)
     else
       @event = Event.find(@reservation.event_id)
       @date = HostedDate.find(@reservation.hosted_date_id)
@@ -53,6 +55,6 @@ class ReservationsController < ApplicationController
   def destroy(id:)
     @reservation = Reservation.find(id)
     @reservation.update(is_canceled: true)
-    redirect_to user_reservations_path, notice: '予約をキャンセルしました'
+    redirect_to user_reservations_path, notice: t(:notice_reservation_destroy)
   end
 end
