@@ -18,7 +18,7 @@ class EventsController < ApplicationController
     @event = current_user.created_events.build(event)
 
     if @event.save
-      redirect_to @event, notice: '作成しました'
+      redirect_to @event, notice: t(:notice_create)
     else
       @today = Time.zone.today
       render 'new'
@@ -37,7 +37,7 @@ class EventsController < ApplicationController
   def update(id:, event:)
     @event = current_user.created_events.find(id)
     if @event.update(event)
-      redirect_to @event, notice: '更新しました'
+      redirect_to @event, notice: t(:notice_update)
     else
       @today = Time.zone.today
       render 'edit'
@@ -47,6 +47,6 @@ class EventsController < ApplicationController
   def destroy(id:)
     @event = current_user.created_events.find(id)
     @event.destroy!
-    redirect_to events_path, notice: '削除しました'
+    redirect_to events_path, notice: t(:notice_destroy)
   end
 end

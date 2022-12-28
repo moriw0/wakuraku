@@ -1,8 +1,9 @@
 class User < ApplicationRecord
   include Discard::Model
 
-  has_many :created_events, class_name: 'Event', foreign_key: 'owner_id'
-  has_many :reservations
+  has_many :created_events, class_name: 'Event', foreign_key: 'owner_id', dependent: :restrict_with_exception,
+                            inverse_of: 'owner'
+  has_many :reservations, dependent: :restrict_with_exception
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: %i[facebook]
@@ -45,11 +46,11 @@ class User < ApplicationRecord
 
   def check_all_events_finished
     now = Time.zone.now
-    if HostedDate.of_created_events_by(self).where(':now < ended_at', now: now).exists?
+    if HostedDate.of_created_events_by(self).exists?([':now < ended_at', { now: now }])
       errors.add(:base, '公開中の未終了イベントが存在します')
     end
 
-    if HostedDate.of_participating_events_by(self).where(':now < ended_at', now: now).exists?
+    if HostedDate.of_participating_events_by(self).exists?([':now < ended_at', { now: now }])
       errors.add(:base, '未終了の参加イベントが存在します')
     end
 

@@ -43,13 +43,6 @@ RSpec.describe HostedDate, type: :model do
     expect(hosted_date).to be_valid
   end
 
-  it 'is invalid when both stared_at and ended_at are not unique' do
-    create(:hosted_date, :from_9_to_10, event: event)
-    hosted_date = build(:hosted_date, :from_9_to_10, event: event)
-    hosted_date.valid?
-    expect(hosted_date.errors[:event_id]).to include('内に既に存在する開催日時です。')
-  end
-
   describe 'overlapping validation for the default held from 9:00 to 10:00' do
     before do
       create(:hosted_date, :from_9_to_10, event: event)

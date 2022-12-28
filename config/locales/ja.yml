@@ -40,3 +40,10 @@ ja:
   errors:
     messages:
       taken: はすでに登録済みです
+  notice_create: 作成しました
+  notice_update: 更新しました
+  notice_destroy: 削除しました
+  notice_reservation_create: ココロミを予約しました
+  notice_reservation_update: 予約を変更しました
+  notice_reservation_destroy: 予約をキャンセルしました
+  notice_retirement_create: 退会完了しました
