@@ -41,6 +41,9 @@ ja:
   errors:
     messages:
       taken: はすでに登録済みです
+      invalid_content_type: のフォーマットが不正です
+      invalid_size: は5MB以下である必要があります
+      invalid_dimention: の画素数は3840*2160以下である必要があります
   notice_create: 作成しました
   notice_update: 更新しました
   notice_destroy: 削除しました

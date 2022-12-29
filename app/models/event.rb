@@ -6,6 +6,7 @@ class Event < ApplicationRecord
   accepts_nested_attributes_for :hosted_dates, allow_destroy: true
 
   attr_accessor :remove_image
+
   before_save :remove_image_if_user_accept
 
   validates :name, length: { maximum: 50 }, presence: true
@@ -16,11 +17,12 @@ class Event < ApplicationRecord
   validates :required_time, length: { maximum: 3 }, presence: true
   validates :capacity, length: { maximum: 3 }, presence: true
   validates :is_published, inclusion: { in: [true, false] }
-  validates :image,
-    content_type: [:png, :jpg, :jpeg],
-    size: { less_than_or_equal_to: 10.megabytes },
-    dimension: { width: { max: 2000 }, height: { max: 2000 } }
-
+  validates :image, content_type: { in: %i[png jpg jpeg],
+                                    message: :invalid_content_type },
+                    size: { less_than_or_equal_to: 5.megabytes,
+                            message: :invalid_size },
+                    dimension: { width: { max: 3840 }, height: { max: 2160 },
+                                 message: :invalid_dimention }
 
   scope :with_dates, -> { eager_load(:hosted_dates) }
   scope :published, -> { where(is_published: true) }
