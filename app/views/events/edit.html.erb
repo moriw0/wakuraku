@@ -42,7 +42,7 @@
       <%= image_tag @event.image.variant(resize_to_fit: [200,200]), class: 'img-thumnail d-block mb-3', width: 200, height: 200 %> 
     <% end %> 
     <%= f.file_field :image, class: 'form-control-file' %>
-    <% if @event.image.attached? %> 
+    <% if @event.image.attached? && @event.image.blob&.persisted? %> 
       <div class="checkbox">
         <div id="label">
           <%= f.check_box :remove_image %> 

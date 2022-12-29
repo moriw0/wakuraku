@@ -16,6 +16,11 @@ class Event < ApplicationRecord
   validates :required_time, length: { maximum: 3 }, presence: true
   validates :capacity, length: { maximum: 3 }, presence: true
   validates :is_published, inclusion: { in: [true, false] }
+  validates :image,
+    content_type: [:png, :jpg, :jpeg],
+    size: { less_than_or_equal_to: 10.megabytes },
+    dimension: { width: { max: 2000 }, height: { max: 2000 } }
+
 
   scope :with_dates, -> { eager_load(:hosted_dates) }
   scope :published, -> { where(is_published: true) }

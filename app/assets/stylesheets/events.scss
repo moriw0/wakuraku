@@ -34,10 +34,8 @@ body .container {
     text-align: center;
     margin-bottom: 30px;
     .top-image {
-      width: 100%;
-      height: auto;
-      background-size: cover;
-      background-position: center;
+      max-width: 680px;
+      max-height: 420px;
     }
   }
 }
