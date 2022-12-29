@@ -79,3 +79,4 @@ gem 'net-pop', require: false
 gem 'action_args'
 gem 'discard', '~> 1.2'
 gem 'active_storage_validations'
+gem 'aws-sdk-s3'
