@@ -1,23 +1,4 @@
-<div class="eye-catching">
-  <div class="wrapper">
-    <div class="event-header">
-      <h1><%= @event.name %> </h1>
-      <div class="btn-space">
-        <% if @event.created_by?(current_user) %> 
-          <%= link_to '編集する', edit_event_path(@event), class: 'btn btn-default' %> 
-          <%= link_to '削除する', event_path(@event), class: 'btn btn-danger', method: :delete, data: { confirm: '本当に削除しますか？' } %> 
-        <% end %> 
-      </div>
-    </div>
-    <%= render 'shared/error_messages', model: @reservation unless @reservation.nil? %>
-    <div class="images-box">
-      <div class="image-box"></div>
-    </div>
-    <div class="event-title">
-      <h2><%= @event.title %> </h2>
-    </div>
-  </div>
-</div>
+<%= render 'event_header' %> 
 <div class="detail-section">
   <div class="wrapper">
     <h2 class="section-header">このココロミについて</h2>

@@ -30,16 +30,16 @@ body .container {
     display: flex;
     justify-content: space-between;
   }
-  // Todo: 画像読み機能実装後修正
-  .images-box {
-    background-image: image-url('workshop.jpeg');
-    width: auto;
-    height: 50vh;
-    background-size: cover;
-    background-position: center;
+  .image-box {
+    text-align: center;
     margin-bottom: 30px;
+    .top-image {
+      width: 100%;
+      height: auto;
+      background-size: cover;
+      background-position: center;
+    }
   }
-  // ここまで
 }
 
 .detail-section, .dates-section {

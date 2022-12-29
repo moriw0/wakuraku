@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   skip_before_action :authenticate_user!, only: :show
-  permits :name, :place, :title, :discription, :price, :required_time, :is_published, :capacity,
+  permits :name, :place, :title, :discription, :price, :required_time, :is_published, :capacity, :image, :remove_image,
           hosted_dates_attributes:
             %i[id started_at ended_at _destroy]
 
