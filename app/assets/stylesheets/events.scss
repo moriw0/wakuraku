@@ -107,3 +107,17 @@ body .container {
     margin-bottom: 10px;
   }
 }
+
+.form-group {
+  .event-small-images {
+    display: flex;
+    flex-wrap: wrap;
+    .event-small-image {
+      display: flex;
+      margin:5px 5px 5px 0;
+      img {
+        margin-left: 3px;
+      }
+    }
+  }
+}

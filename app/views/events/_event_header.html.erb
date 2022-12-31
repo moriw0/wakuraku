@@ -11,8 +11,10 @@
     </div>
     <%= render 'shared/error_messages', model: @reservation unless @reservation.nil? %>
     <div class="image-box">
-      <% if @event.image.attached? %> 
-        <%= image_tag @event.image, class: 'card-img-top top-image' %> 
+      <% if @event.images.attached? %> 
+        <% @event.images.each do |image| %> 
+          <%= link_to image_tag(image, class: 'top-image'), url_for(image) %>
+        <% end %> 
       <% else %> 
         <%= image_tag 'no_event_image.jpeg', class: 'top-image' %> 
       <% end %> 
