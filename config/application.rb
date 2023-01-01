@@ -20,6 +20,11 @@ module Wakuraku
         helper_specs: false,
         routing_specs: false
       g.factory_bot false
+      g.test_framework  false
+      g.stylesheets     false
+      g.javascripts     false
+      g.helper          false
+      g.channel         assets: false
     end
     # Configuration for the application, engines, and railties goes here.
     #

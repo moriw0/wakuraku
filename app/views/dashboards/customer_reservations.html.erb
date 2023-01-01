@@ -5,7 +5,7 @@
         <% if @customer.image.present? %>
           <%= image_tag @customer.image, class: 'user-image' %>
         <% else %>
-          <%= image_tag 'blank_user_image.png', class: 'user-image' %>
+          <%= image_pack_tag 'media/images/blank_user_image.png', class: 'user-image' %>
         <% end %>
     <% end %>
     <table>
