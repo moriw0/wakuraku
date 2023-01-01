@@ -61,7 +61,7 @@ RSpec.describe 'Reservations', type: :system, js: true do
 
       scenario 'user can change to other hosted_date for the reservation' do
         visit root_path
-        click_link '予約したココロミ'
+        click_link '申し込み履歴'
         expect(page).to have_content 'バスソルト作り'
         expect(page).to have_content '08:00 - 09:00'
         click_link 'バスソルト作り'
@@ -76,7 +76,7 @@ RSpec.describe 'Reservations', type: :system, js: true do
 
       scenario 'user can cancel the reservation' do
         visit root_path
-        click_link '予約したココロミ'
+        click_link '申し込み履歴'
         expect(page).to have_content 'バスソルト作り'
         expect(page).to have_content '08:00 - 09:00'
         click_link 'バスソルト作り'

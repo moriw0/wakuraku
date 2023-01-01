@@ -4,7 +4,7 @@
       <h1><%= @event.name %> </h1>
       <div class="btn-space">
         <% if @event.created_by?(current_user) %> 
-          <%= link_to '編集する', edit_event_path(@event), class: 'btn btn-default' %> 
+          <%= link_to '編集する', edit_event_path(@event), class: 'btn btn-outline-secondary' %> 
           <%= link_to '削除する', event_path(@event), class: 'btn btn-danger', method: :delete, data: { confirm: '本当に削除しますか？' } %> 
         <% end %> 
       </div>

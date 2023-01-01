@@ -38,7 +38,7 @@
         </tr>
       </table>
       <div class="btn-area">
-        <%= f.submit '予約内容を変更する', class: 'btn btn-default btn-block' %> 
+        <%= f.submit '予約内容を変更する', class: 'btn btn-outline-secondary btn-block' %> 
         <div class="btn-modest">
           <%= link_to 'この予約をキャンセルする', user_reservation_path(user_id: current_user, reservaiton_id: @reservation), method: :delete, data: { confirm: '本当にキャンセルしますか？' } %> 
         </div>

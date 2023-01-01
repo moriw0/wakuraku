@@ -1,11 +1,11 @@
 <div class="row">
-  <div class="col-xs-6">
+  <div class="col">
     <%= f.label '開催日時' %>
   </div>
-  <div class="col-xs-6">
+  <div class="col">
     <div class="text-right">
       <%= link_to_add_association '開催日時を追加', f, :hosted_dates,
-        class: 'btn btn-default',
+        class: 'btn btn-outline-secondary',
         data: {
           association_insertion_node: '#detail-association-insertion-point',
           association_insertion_method: 'append' }
@@ -18,9 +18,9 @@
     <table class="table table-list">
       <thead>
         <tr>
-          <th>開始</th>
-          <th>終了</th>
-          <th></th>
+          <td>開始</td>
+          <td>終了</td>
+          <td></td>
         </tr>
       </thead>
       <tbody id='detail-association-insertion-point'>
