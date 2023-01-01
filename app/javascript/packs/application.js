@@ -16,6 +16,9 @@ require("@nathanvda/cocoon")
 const images = require.context('../images', true)
 const imagePath = (name) => images(name, true)
 
+// JavaScript
+import '../javascripts/image_upload_form.js'
+
 // CSS
 import '../stylesheets/application.scss'
 

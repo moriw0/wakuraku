@@ -39,19 +39,9 @@
   <div class="form-group">
     <%= f.label :images %> 
     <% if @event.images.attached? && @event.images.blobs.first.persisted? %> 
-    <p>画像を削除する場合はチェックボックスを選択してください。</p>
-      <div class="event-small-images">
-        <% @event.images.each do |image| %> 
-          <div class="event-small-image">
-            <%= f.check_box :image_ids, { multiple: true }, image.id, false %> 
-            <label for="event_image_ids_<%= image.id %>">
-              <%= image_tag image.variant(resize_to_fit: [200,200]).processed %> 
-            </label>
-          </div>
-        <% end %> 
-      </div>
+      <%= render 'attached_images', event: @event, f: f %>
     <% end %> 
-    <%= f.file_field :images, multiple: true, class: 'form-control-file' %>
+    <%= render 'file_iput_field', f: f %>
   </div>
   <%= f.submit class: 'btn btn-primary' %> 
 <% end %> 
