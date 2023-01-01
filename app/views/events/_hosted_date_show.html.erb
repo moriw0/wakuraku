@@ -9,7 +9,7 @@
       <span class="rest-capacity">残り<%= date.capacity_left %> 人</span>
     </td>
     <td>
-      <%= link_to '予約する', '#', class: "btn btn-default disabled" %>
+      <%= link_to '予約する', '#', class: "btn btn-outline-secondary disabled" %>
     </td>
   <% elsif date.available? %>
     <td>
@@ -17,7 +17,7 @@
       <span class="rest-capacity">残り<%= date.capacity_left %> 人</span>
     </td>
     <td>
-      <%= link_to '予約する', new_event_reservation_path(event_id: date.event, date_id: date), class: "btn btn-default" %>
+      <%= link_to '予約する', new_event_reservation_path(event_id: date.event, date_id: date), class: "btn btn-outline-secondary" %>
     </td>
   <% else %>
     <td>
@@ -25,7 +25,7 @@
       <span class="rest-capacity">残り0 人</span>
     </td>
     <td>
-      <%= link_to '予約する', '#', class: "btn btn-default disabled" %>
+      <%= link_to '予約する', '#', class: "btn btn-outline-secondary disabled" %>
     </td>
   <% end %>
 </tr>

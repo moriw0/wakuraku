@@ -7,6 +7,6 @@
   <%= f.datetime_field :ended_at, min: @today.strftime('%Y-%m-%dT%T'), max: @today.next_year.strftime('%Y-%m-%dT%T'), step:600  %>
   </td>
   <td>
-  <%= link_to_remove_association '削除', f, class: 'btn btn-default' %>
+  <%= link_to_remove_association '削除', f, class: 'btn btn-outline-secondary' %>
   </td>
 </tr>

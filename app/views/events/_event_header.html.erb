@@ -16,7 +16,7 @@
           <%= link_to image_tag(image, class: 'top-image'), url_for(image) %>
         <% end %> 
       <% else %> 
-        <%= image_tag 'no_event_image.jpeg', class: 'top-image' %> 
+        <%= image_pack_tag 'media/images/no_event_image.jpeg', class: 'top-image' %>
       <% end %> 
     </div>
     <div class="event-title">
