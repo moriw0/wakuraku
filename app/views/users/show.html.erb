@@ -13,7 +13,7 @@
         <% if @user.image.present? %>
           <%= image_tag @user.image, class: 'user-image' %>
         <% else %>
-          <%= image_tag 'blank_user_image.png', class: 'user-image' %>
+          <%= image_pack_tag 'media/images/blank_user_image.png', class: 'user-image' %>
         <% end %>
         <p class="user-name"><%= @user.nickname %></p>
         <p class="user-profile"><%= @user.profile %> </p>

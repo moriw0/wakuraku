@@ -60,7 +60,7 @@
         <% if @event.owner.image.present? %>
           <%= image_tag @event.owner.image, class: 'owner-image' %>
         <% else %>
-          <%= image_tag 'blank_user_image.png', class: 'owner-image' %>
+          <%= image_pack_tag 'media/images/blank_user_image.png', class: 'owner-image' %>
         <% end %>
         <p class="owner-name"><%= @event.owner.nickname %></p>
       <% end %>

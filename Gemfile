@@ -62,19 +62,14 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-
 gem 'devise'
 gem 'omniauth-facebook'
 gem 'omniauth-rails_csrf_protection'
-
-gem 'bootstrap-sass'
 gem 'rails-i18n'
 gem "cocoon"
-
 gem "font-awesome-sass", "~> 6.2.0"
 gem 'net-smtp', require: false
 gem 'net-imap', require: false
 gem 'net-pop', require: false
-
 gem 'action_args'
 gem 'discard', '~> 1.2'

@@ -32,7 +32,7 @@ body .container {
   }
   // Todo: 画像読み機能実装後修正
   .images-box {
-    background-image: image-url('workshop.jpeg');
+    background-image: url("../images/workshop.jpeg");
     width: auto;
     height: 50vh;
     background-size: cover;

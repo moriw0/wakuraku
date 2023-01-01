@@ -7,9 +7,17 @@ import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
-
+import 'bootstrap'
+import '@fortawesome/fontawesome-free/js/all'
 require("jquery")
 require("@nathanvda/cocoon")
+
+// 画像
+const images = require.context('../images', true)
+const imagePath = (name) => images(name, true)
+
+// CSS
+import '../stylesheets/application.scss'
 
 Rails.start()
 Turbolinks.start()
