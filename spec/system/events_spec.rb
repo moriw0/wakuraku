@@ -11,6 +11,7 @@ RSpec.describe 'Events', type: :system do
     click_button 'ログインする'
 
     expect {
+      click_link 'ダッシュボード'
       click_link 'ココロミをつくる'
       fill_in '名前', with: 'バスソルト作り'
       fill_in 'タイトル', with: '心身共にリラックスできるバスソルトを作りましょう'

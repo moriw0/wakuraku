@@ -22,8 +22,9 @@ RSpec.describe 'Dashboards', type: :system do
   end
 
   scenario 'owner gets #reservation_index and then #event_reservations' do
-    click_link 'つくったココロミの予約一覧'
-    expect(page).to have_content 'つくったココロミの予約一覧'
+    click_link 'ダッシュボード'
+    click_link '予約一覧'
+    expect(page).to have_content '予約一覧'
 
     within all('tr')[1] do
       expect(find('th')).to have_content 'バスソルト作り'
@@ -53,7 +54,8 @@ RSpec.describe 'Dashboards', type: :system do
   end
 
   scenario 'owner gets #event_index and then #event_reservations' do
-    click_link 'つくったココロミ一覧'
+    click_link 'ダッシュボード'
+    click_link 'ココロミ一覧'
     expect(page).to have_content 'ココロミ一覧'
 
     within all('tr')[1] do
@@ -80,6 +82,7 @@ RSpec.describe 'Dashboards', type: :system do
   end
 
   scenario 'owner gets #customer_index and then #customer_reservations' do
+    click_link 'ダッシュボード'
     click_link '顧客一覧'
     expect(page).to have_content '顧客一覧'
 
