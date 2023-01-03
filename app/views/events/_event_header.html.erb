@@ -4,7 +4,7 @@
       <h1><%= @event.name %> </h1>
       <div class="btn-space">
         <% if @event.created_by?(current_user) %> 
-          <%= link_to '編集する', edit_event_path(@event), class: 'btn btn-default' %> 
+          <%= link_to '編集する', edit_event_path(@event), class: 'btn btn-outline-secondary' %> 
           <%= link_to '削除する', event_path(@event), class: 'btn btn-danger', method: :delete, data: { confirm: '本当に削除しますか？' } %> 
         <% end %> 
       </div>
@@ -12,15 +12,17 @@
     <%= render 'shared/error_messages', model: @reservation unless @reservation.nil? %>
     <div class="image-box">
       <% if @event.images.attached? %> 
-        <% @event.images.each do |image| %> 
-          <%= link_to image_tag(image, class: 'top-image'), url_for(image) %>
-        <% end %> 
+        <div class="slider">
+          <% @event.images.each do |image| %> 
+            <%= image_tag image, class: 'thumbnail' %>
+          <% end %> 
+        </div>
       <% else %> 
-        <%= image_pack_tag 'media/images/no_event_image.jpeg', class: 'top-image' %>
+        <%= image_pack_tag 'media/images/no_event_image.jpeg', class: 'no-image' %>
       <% end %> 
     </div>
     <div class="event-title">
-      <h2><%= @event.title %> </h2>xx
+      <h2><%= @event.title %> </h2>
     </div>
   </div>
 </div>

@@ -2,12 +2,12 @@
   <p>投稿済み一覧（削除する場合は選択して更新）</p>
   <div class="event-small-images">
     <% event.images.each do |image| %> 
-    <div class="event-small-image">
-      <%= f.check_box :image_ids, { multiple: true }, image.id, false %> 
-      <label for="event_image_ids_<%= image.id %>">
-        <%= image_tag image.variant(resize_to_fit: [200,100]).processed %> 
-      </label>
-    </div>
+      <div class="event-small-image">
+        <%= f.check_box :image_ids, { multiple: true }, image.id, false %> 
+        <label for="event_image_ids_<%= image.id %>">
+          <%= image_tag image.variant(resize_to_fit: [200,100]).processed %> 
+        </label>
+      </div>
     <% end %> 
   </div>
 </div>

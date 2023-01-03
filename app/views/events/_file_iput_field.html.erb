@@ -1,7 +1,7 @@
 
 <div id="file" class="input-group">
   <div class="custom-file">
-    <%= f.file_field :images, multiple: true, class: 'custom-file-input' %>
+    <%= f.file_field :images, multiple: true, class: 'custom-file-input', accept: "image/jpeg,image/jpg,image/png"%>
     <label class="custom-file-label" for="customfile" data-browse="参照">ファイル選択...</label>
   </div>
   <div class="input-group-append">

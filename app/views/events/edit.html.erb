@@ -38,9 +38,7 @@
   </div>
   <div class="form-group">
     <%= f.label :images %> 
-    <% if @event.images.attached? && @event.images.blobs.first.persisted? %> 
-      <%= render 'attached_images', event: @event, f: f %>
-    <% end %> 
+    <%= render 'attached_images', event: @event, f: f if @event.images.attached? && @event.images.blobs.first.persisted? %> 
     <%= render 'file_iput_field', f: f %>
   </div>
   <%= f.submit class: 'btn btn-primary' %> 

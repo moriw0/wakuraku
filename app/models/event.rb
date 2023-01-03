@@ -18,11 +18,11 @@ class Event < ApplicationRecord
   validates :capacity, length: { maximum: 3 }, presence: true
   validates :is_published, inclusion: { in: [true, false] }
   validates :images, content_type: { in: %i[png jpg jpeg],
-                                    message: :invalid_content_type },
-                    size: { less_than_or_equal_to: 5.megabytes,
-                            message: :invalid_size },
-                    dimension: { width: { max: 3840 }, height: { max: 2160 },
-                                 message: :invalid_dimention }
+                                     message: :invalid_content_type },
+                     size: { less_than_or_equal_to: 5.megabytes,
+                             message: :invalid_size },
+                     dimension: { width: { max: 3840 }, height: { max: 2160 },
+                                  message: :invalid_dimention }
 
   scope :with_dates, -> { eager_load(:hosted_dates) }
   scope :published, -> { where(is_published: true) }
@@ -42,7 +42,7 @@ class Event < ApplicationRecord
     return unless image_ids
 
     image_ids.each do |image_id|
-      image = self.images.find(image_id)
+      image = images.find(image_id)
       image.purge
     end
   end
