@@ -33,6 +33,10 @@
     <%= render 'hosted_date', f: f %>
   </div>
   <div class="form-group">
+    <%= f.label :images, '画像（複数選択可）' %> 
+    <%= render 'file_iput_field', f: f %>
+  </div>
+  <div class="form-group">
     <%= f.label :is_published %> 
     <%= f.select :is_published, [['公開', true], ['非公開', false]], {}, { class: 'form-control' } %>
   </div>

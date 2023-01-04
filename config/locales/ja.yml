@@ -15,6 +15,7 @@ ja:
         capacity: 定員
         started_at: 開始日時
         ended_at: 終了日時
+        images: 画像
       reservation:
         comment: 連絡事項
         hosted_date_id: 日時
@@ -40,6 +41,9 @@ ja:
   errors:
     messages:
       taken: はすでに登録済みです
+      invalid_content_type: のフォーマットが不正です
+      invalid_size: は5MB以下である必要があります
+      invalid_dimention: の解像度は3840*2160以下である必要があります
   notice_create: 作成しました
   notice_update: 更新しました
   notice_destroy: 削除しました

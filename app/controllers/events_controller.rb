@@ -1,8 +1,8 @@
 class EventsController < ApplicationController
   skip_before_action :authenticate_user!, only: :show
-  permits :name, :place, :title, :discription, :price, :required_time, :is_published, :capacity,
-          hosted_dates_attributes:
-            %i[id started_at ended_at _destroy]
+  permits :name, :place, :title, :discription, :price, :required_time,
+          :is_published, :capacity, images: [], image_ids: [],
+                                    hosted_dates_attributes: %i[id started_at ended_at _destroy]
 
   def index
     @events = Event.with_recent_dates

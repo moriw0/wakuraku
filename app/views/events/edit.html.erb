@@ -36,5 +36,10 @@
     <%= f.label :is_published %> 
     <%= f.select :is_published, [['公開', true], ['非公開', false]], {}, { class: 'form-control' } %>
   </div>
+  <div class="form-group">
+    <%= f.label :images %> 
+    <%= render 'attached_images', event: @event, f: f if @event.images.attached? && @event.images.blobs.first.persisted? %> 
+    <%= render 'file_iput_field', f: f %>
+  </div>
   <%= f.submit class: 'btn btn-primary' %> 
 <% end %> 
