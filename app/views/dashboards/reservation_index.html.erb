@@ -11,6 +11,6 @@
   </thead>
   <tbody>
     <%= render partial: 'reserved_event_item', collection: @reservations, as: 'reservation' %>
-    <%= paginate @reservations %>
   </tbody>
 </table>
+<%= paginate @reservations %>

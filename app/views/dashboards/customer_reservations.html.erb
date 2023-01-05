@@ -46,8 +46,8 @@
       </thead>
       <tbody>
         <%= render partial: 'reservaiton_item', collection: @reservations, as: 'reservation' %>
-        <%= paginate @reservations %>
       </tbody>
     </table>
+    <%= paginate @reservations %>
   </div>
 </div>
