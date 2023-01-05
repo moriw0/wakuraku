@@ -15,5 +15,6 @@
         <%= render partial: 'event_item', collection: @events, as: 'event' %>
       </tbody>
     </table>
+    <%= paginate @events %>
   </div>
 </div>

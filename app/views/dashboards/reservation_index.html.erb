@@ -13,3 +13,4 @@
     <%= render partial: 'reserved_event_item', collection: @reservations, as: 'reservation' %>
   </tbody>
 </table>
+<%= paginate @reservations %>
