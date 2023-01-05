@@ -1,12 +1,4 @@
 <% if @user.kept? %> 
-  <div class="events-section">
-    <div class="wrapper">
-      <% if @events.any? %>
-        <h1><%= @user.nickname %>のココロミ</h1>
-        <%= render partial: 'events/event_item', collection: @events, as: 'event' %>
-      <% end %>
-    </div>
-  </div>
   <div class="user-section">
     <div class="wrapper">
       <div class="user-detail">
@@ -19,6 +11,15 @@
         <p class="user-profile"><%= @user.profile %> </p>
         <%= link_to 'プロフィールを編集する', edit_user_registration_path, class: 'user-edit-link' if current_user?(@user) %>
       </div>
+    </div>
+  </div>
+  <div class="events-section">
+    <div class="wrapper">
+      <% if @events.any? %>
+        <h1><%= @user.nickname %>のココロミ</h1>
+        <%= render partial: 'events/event_item', collection: @events, as: 'event' %>
+      <% end %>
+      <%= paginate @events %>
     </div>
   </div>
 <% else %> 
