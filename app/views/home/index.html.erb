@@ -3,3 +3,4 @@
 <div class="list-group">
   <%= render partial: 'events/event_item', collection: @events, as: 'event' %>
 </div>
+<%= paginate @events %>

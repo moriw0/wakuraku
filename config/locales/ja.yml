@@ -33,6 +33,13 @@ ja:
         profile: 自己紹介
         phone_number: 電話番号
         remember_me: ログインしたままにする
+  views:
+    pagination:
+      first: "&laquo; 最初"
+      last: "最後 &raquo;"
+      previous: "&lsaquo; 前"
+      next: "次 &rsaquo;"
+      truncate: "&hellip;"
   time:
     formats:
       default: "%Y年%m月%d日"
