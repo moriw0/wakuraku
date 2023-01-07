@@ -1,4 +1,6 @@
 class Event < ApplicationRecord
+  searchkick language: 'japanese'
+
   belongs_to :owner, class_name: 'User'
   has_many_attached :images, dependent: false
   has_many :hosted_dates, dependent: :destroy
@@ -34,6 +36,16 @@ class Event < ApplicationRecord
     return false unless user
 
     owner.id == user.id
+  end
+
+  def search_data
+    {
+      name: name,
+      place: place,
+      title: title,
+      discription: discription,
+      owner_name: owner&.name
+    }
   end
 
   private
