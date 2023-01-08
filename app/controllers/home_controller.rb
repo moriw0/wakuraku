@@ -9,6 +9,6 @@ class HomeController < ApplicationController
   private
 
   def event_search_form_params
-    params.fetch(:event_search_form, {}).permit(:keyword).merge(page: params[:page])
+    params.fetch(:event_search_form, {}).permit(:keyword, :hosted_date).merge(page: params[:page])
   end
 end

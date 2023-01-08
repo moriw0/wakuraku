@@ -4,7 +4,7 @@ document.addEventListener('turbolinks:load', function(event){
     form.addEventListener('ajax:beforeSend', function(event) {
       const options = event.detail[1]
 
-      Tubolinks.visit(options.url)
+      Turbolinks.visit(options.url)
       event.preventDefault()
     })
   }
