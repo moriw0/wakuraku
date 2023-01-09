@@ -10,7 +10,8 @@ class EventSearchForm
     Event.search(
       keyword_for_search,
       includes: [:hosted_dates],
-      where: { hosted_dates: range_of_hosted_date },
+      where: { hosted_dates: range_of_hosted_date,
+               is_published: true },
       page: page,
       per_page: 10
     )

@@ -45,8 +45,7 @@ class Event < ApplicationRecord
       title: title,
       discription: discription,
       is_published: is_published,
-      owner_name: owner&.name,
-      updated_at: updated_at,
+      owner_nickname: owner&.nickname,
       hosted_dates: hosted_dates.map(&:started_at)
     }
   end
