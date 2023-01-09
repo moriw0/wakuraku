@@ -13,5 +13,11 @@ FactoryBot.define do
     trait :with_hosted_dates do
       after(:create) { |event| create_list(:hosted_date, 3, event: event) }
     end
+
+    trait :reindex do
+      after(:create) do |event, _evaluator|
+        event.reindex(refresh: true)
+      end
+    end
   end
 end
