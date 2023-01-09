@@ -9,6 +9,7 @@ RSpec.describe 'Retirements', type: :system, js: true do
   let(:user_2) { create(:user) }
 
   before do
+    Event.reindex
     user_1.reservations.create(
       event: event,
       hosted_date: hosted_date_1

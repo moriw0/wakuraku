@@ -8,6 +8,10 @@ RSpec.describe 'Reservations', type: :system, js: true do
     let!(:hosted_date_2) { create(:hosted_date, :from_10_to_11, event: event) }
     let(:user) { create(:user) }
 
+    before do
+      Event.reindex
+    end
+
     scenario 'user reserves the event' do
       sign_in user
       visit root_path
@@ -133,6 +137,7 @@ RSpec.describe 'Reservations', type: :system, js: true do
 
     before do
       create(:hosted_date, :from_10_to_11, event: event)
+      Event.reindex
 
       user.reservations.create(
         event: event,

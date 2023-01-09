@@ -77,3 +77,5 @@ gem 'active_storage_validations'
 gem 'aws-sdk-s3'
 gem 'kaminari'
 gem 'faker'
+gem "searchkick"
+gem 'elasticsearch', "< 7.14"
