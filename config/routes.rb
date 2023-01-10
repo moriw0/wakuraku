@@ -25,4 +25,6 @@ Rails.application.routes.draw do
   end
 
   resource :retirements, only: [:new, :create]
+
+  match '*unmatched_path', to: 'application#error404', via: :all
 end
