@@ -1,17 +1,19 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!
 
-  rescue_from Exception, with: :error500 unless Rails.env.development?
-  rescue_from ActiveRecord::RecordNotFound, ActionController::RoutingError, with: :error404 unless Rails.env.development?
+  rescue_from Exception, with: :error_500 unless Rails.env.development?
+  unless Rails.env.development?
+    rescue_from ActiveRecord::RecordNotFound, ActionController::RoutingError, with: :error_404
+  end
 
   private
 
-  def error500(e)
-    logger.error [e, *e.backtrace].join("\n")
-    render 'error500', status: 500, formats: [:html]
+  def error_500(err)
+    logger.error [err, *err.backtrace].join("\n")
+    render 'error_500', status: :internal_server_error, formats: [:html]
   end
 
-  def error404(e)
-    render 'error404', status: 404, formats: [:html]
+  def error_404(_err)
+    render 'error_404', status: :not_found, formats: [:html]
   end
 end
