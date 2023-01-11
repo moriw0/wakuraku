@@ -31,6 +31,8 @@ class HostedDate < ApplicationRecord
   private
 
   def started_at_should_be_after_now
+    return unless started_at
+
     errors.add(:started_at, 'は現在時刻より後に設定してください') if started_at <= DateTime.now
   end
 
