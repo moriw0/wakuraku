@@ -122,12 +122,11 @@ RSpec.describe EventsController, type: :controller do
       let(:other_user) { create(:user) }
       let(:event) { create(:event, :with_hosted_dates, owner: other_user, name: 'old_name') }
 
-      it 'raises exeption error' do
+      it 'returns a 404 response' do
         event_params = attributes_for(:event, :with_hosted_dates, name: 'new_name')
         sign_in user
-        expect {
-          patch :update, params: { id: event.id, event: event_params }
-        }.to raise_error(ActiveRecord::RecordNotFound)
+        patch :update, params: { id: event.id, event: event_params }
+        expect(response).to have_http_status '404' 
       end
     end
 
@@ -165,11 +164,10 @@ RSpec.describe EventsController, type: :controller do
       let(:other_user) { create(:user) }
       let!(:event) { create(:event, :with_hosted_dates, owner: other_user) }
 
-      it 'raises exeption error' do
+      it 'returns a 404 response' do
         sign_in user
-        expect {
-          delete :destroy, params: { id: event.id }
-        }.to raise_error(ActiveRecord::RecordNotFound)
+        delete :destroy, params: { id: event.id }
+        expect(response).to have_http_status '404'
       end
     end
 
