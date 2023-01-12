@@ -4,7 +4,7 @@ class DashboardsController < ApplicationController
   end
 
   def event_reservations(event_id)
-    @event = Event.find(event_id)
+    @event = current_user.created_events.find(event_id)
     @reservations = @event.reservations.page params[:page]
   end
 

@@ -30,7 +30,7 @@ RSpec.describe 'Events', type: :system do
   scenario 'user can not create a new event with no hosted_dates' do
     sign_in user
     visit root_path
-  
+
     expect {
       click_link 'ダッシュボード'
       click_link 'ココロミをつくる'
@@ -42,7 +42,7 @@ RSpec.describe 'Events', type: :system do
       fill_in '所要時間', with: 30
       fill_in '定員', with: 5
       click_button '登録する'
-  
+
       expect(page).to have_content '開始日時が入力されていません'
       expect(page).to have_content '終了日時が入力されていません'
     }.to_not change(user.created_events, :count)
