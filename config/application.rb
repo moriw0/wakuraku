@@ -27,6 +27,8 @@ module Wakuraku
       g.helper          false
       g.channel         assets: false
     end
+
+    config.railties_order = [ActiveStorage::Engine, :main_app, :all]
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
