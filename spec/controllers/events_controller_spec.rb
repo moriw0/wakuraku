@@ -126,7 +126,7 @@ RSpec.describe EventsController, type: :controller do
         event_params = attributes_for(:event, :with_hosted_dates, name: 'new_name')
         sign_in user
         patch :update, params: { id: event.id, event: event_params }
-        expect(response).to have_http_status '404' 
+        expect(response).to have_http_status '404'
       end
     end
 

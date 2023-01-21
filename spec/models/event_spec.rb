@@ -6,6 +6,25 @@ RSpec.describe Event, type: :model do
     expect(new_event).to be_valid
   end
 
+  it 'is valid with images less than 5MB' do
+    new_event = build(:event)
+    new_event.images = [
+      fixture_file_upload('1000x800_2.1MB.png'),
+      fixture_file_upload('1000x800_3.2MB.png'),
+      fixture_file_upload('1000x800_4.2MB.png')
+    ]
+    expect(new_event).to be_valid
+  end
+
+  it 'is invalid with images greater than 5MB' do
+    new_event = build(:event)
+    new_event.images = [
+      fixture_file_upload('1000x800_5.3MB.png')
+    ]
+    new_event.valid?
+    expect(new_event.errors[:images]).to include('は5MB以下である必要があります')
+  end
+
   it 'is invalid without a name' do
     new_event = build(:event, name: nil)
     new_event.valid?
