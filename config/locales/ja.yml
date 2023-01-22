@@ -25,6 +25,7 @@ ja:
         started_at: 開始日時
         ended_at: 終了日時
       user:
+        avatar: プロフィール画像
         email: メールアドレス
         password: パスワード
         password_confirmation: パスワード（確認）

@@ -2,8 +2,8 @@
   <div class="user-section">
     <div class="wrapper">
       <div class="user-detail">
-        <% if @user.image.present? %>
-          <%= image_tag @user.image, class: 'user-image' %>
+        <% if @user.avatar.attached? && @user.avatar.blob.persisted? %> 
+          <%= image_tag @user.avatar, class: 'user-image' %>
         <% else %>
           <%= image_pack_tag 'media/images/blank_user_image.png', class: 'user-image' %>
         <% end %>

@@ -4,6 +4,7 @@ class User < ApplicationRecord
   has_many :created_events, class_name: 'Event', foreign_key: 'owner_id', dependent: :restrict_with_exception,
                             inverse_of: 'owner'
   has_many :reservations, dependent: :restrict_with_exception
+  has_one_attached :avatar
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: %i[facebook]

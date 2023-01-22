@@ -1,0 +1,13 @@
+<div class="avatar-prev">
+  <div class="avatar-prev-img">
+    <% if @user.avatar.attached? && @user.avatar.blob.persisted? %> 
+      <%= image_tag @user.avatar, class: 'avatar' %>
+    <% else %>
+      <%= image_pack_tag 'media/images/blank_user_image.png', class: 'avatar' %>
+    <% end %>
+  </div> 
+  <%= f.label :avatar do %>
+    <span class="upload-file-label">変更</span>
+    <%= f.file_field :avatar, accept: 'image/jpeg,image/jpg,image/png', class: 'uploader', style: 'display:none' %>
+  <% end %>
+</div>
