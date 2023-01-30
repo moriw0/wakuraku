@@ -1,0 +1,9 @@
+<div class="avatar-prev">
+  <div class="avatar-prev-img">
+    <%= image_tag avatar(@user), class: 'avatar' %>
+  </div> 
+  <%= f.label :avatar do %>
+    <span class="upload-file-label">変更</span>
+    <%= f.file_field :avatar, accept: 'image/jpeg,image/jpg,image/png', class: 'uploader', style: 'display:none' %>
+  <% end %>
+</div>

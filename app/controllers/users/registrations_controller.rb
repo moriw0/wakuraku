@@ -43,7 +43,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   protected
 
   def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: %i[nickname phone_number profile])
+    devise_parameter_sanitizer.permit(:sign_up, keys: %i[nickname phone_number profile avatar])
   end
 
   def update_resource(resource, params)
@@ -51,7 +51,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def configure_account_update_params
-    devise_parameter_sanitizer.permit(:account_update, keys: %i[nickname phone_number profile])
+    devise_parameter_sanitizer.permit(:account_update, keys: %i[nickname phone_number profile avatar])
   end
 
   def after_update_path_for(resource)

@@ -2,11 +2,7 @@
   <div class="user-section">
     <div class="wrapper">
       <div class="user-detail">
-        <% if @user.image.present? %>
-          <%= image_tag @user.image, class: 'user-image' %>
-        <% else %>
-          <%= image_pack_tag 'media/images/blank_user_image.png', class: 'user-image' %>
-        <% end %>
+        <%= image_tag avatar(@user), class: 'user-image' %>
         <p class="user-name"><%= @user.nickname %></p>
         <p class="user-profile"><%= @user.profile %> </p>
         <%= link_to 'プロフィールを編集する', edit_user_registration_path, class: 'user-edit-link' if current_user?(@user) %>

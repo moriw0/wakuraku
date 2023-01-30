@@ -20,6 +20,7 @@ const imagePath = (name) => images(name, true)
 import '../javascripts/image_upload_form.js'
 import '../javascripts/slick.js'
 import '../javascripts/get_form_turbolinks.js'
+import '../javascripts/avatar_upload'
 
 // CSS
 import '../stylesheets/application.scss'

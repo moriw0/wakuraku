@@ -4,6 +4,7 @@ class User < ApplicationRecord
   has_many :created_events, class_name: 'Event', foreign_key: 'owner_id', dependent: :restrict_with_exception,
                             inverse_of: 'owner'
   has_many :reservations, dependent: :restrict_with_exception
+  has_one_attached :avatar
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: %i[facebook]
@@ -30,17 +31,20 @@ class User < ApplicationRecord
     end
   end
 
+  # rubocop:disable Metrics/AbcSize
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
       user.password = Devise.friendly_token[0, 20]
       user.name = auth.info.name
-      user.image = auth.info.image
+      avatar_url = URI.parse(auth.info.image.to_s).open
+      user.avatar.attach(io: avatar_url, filename: 'user_avatar.jpg')
       # If you are using confirmable and the provider(s) you use validate emails,
       # uncomment the line below to skip the confirmation emails.
       # user.skip_confirmation!
     end
   end
+  # rubocop:enable Metrics/AbcSize
 
   private
 
