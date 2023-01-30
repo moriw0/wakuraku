@@ -31,18 +31,20 @@ class User < ApplicationRecord
     end
   end
 
+  # rubocop:disable Metrics/AbcSize
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
       user.password = Devise.friendly_token[0, 20]
       user.name = auth.info.name
-      avatar_url = URI.parse("#{auth.info.image}").open
-      user.avatar.attach(io: avatar_url, filename: "user_avatar.jpg")
+      avatar_url = URI.parse(auth.info.image.to_s).open
+      user.avatar.attach(io: avatar_url, filename: 'user_avatar.jpg')
       # If you are using confirmable and the provider(s) you use validate emails,
       # uncomment the line below to skip the confirmation emails.
       # user.skip_confirmation!
     end
   end
+  # rubocop:enable Metrics/AbcSize
 
   private
 
